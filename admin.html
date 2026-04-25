@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>行政辦理服務 — 弘越心選</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #EEE2DE;
+      --bg2:       #E5D8D4;
+      --bg3:       #DCCEC9;
+      --gold:      #2B2A4C;
+      --gold2:     #1F1E3A;
+      --gold-dim:  rgba(43,42,76,0.15);
+      --gold-line: rgba(43,42,76,0.25);
+      --text:      #2B2A4C;
+      --muted:     #8A7E82;
+      --card:      rgba(255,255,255,0.03);
+      --border:    rgba(43,42,76,0.18);
+      --radius:    10px;
+      --serif:     'Noto Serif TC', serif;
+      --sans:      'Noto Sans TC', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 68px;
+      background: rgba(43,42,76,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1.6rem; font-weight: 900;
+      color: var(--gold); letter-spacing: .05em; text-decoration: none; line-height: 1;
+    }
+    .nav-sub {
+      font-size: .72rem; color: var(--muted); letter-spacing: .08em;
+      border-left: 1px solid var(--border); padding-left: 16px; font-weight: 300;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .85rem;
+      font-weight: 300; letter-spacing: .04em; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--bg); font-family: var(--sans);
+      font-weight: 700; border: none; padding: 9px 22px; cursor: pointer;
+      font-size: .85rem; letter-spacing: .04em; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--gold2); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 40px 60px;
+      background: linear-gradient(160deg, rgba(43,42,76,0.06) 0%, transparent 50%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      font-size: .78rem; color: var(--muted); letter-spacing: .12em;
+      font-weight: 300; margin-bottom: 24px;
+    }
+    .hero-eyebrow::before { content: '——'; color: var(--gold); }
+    .hero h1 {
+      font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900; line-height: 1.2; margin-bottom: 12px; color: var(--text);
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-en {
+      font-family: 'Noto Serif TC', serif; font-style: italic;
+      font-size: clamp(.85rem, 1.5vw, 1rem); color: var(--muted);
+      letter-spacing: .18em; font-weight: 400; margin-bottom: 28px;
+    }
+    .hero-tagline { font-size: .95rem; color: var(--muted); font-weight: 300; line-height: 1.9; margin-bottom: 8px; }
+    .hero-tagline strong { color: var(--text); font-weight: 500; }
+
+    /* ── PAGE ── */
+    .page { max-width: 1000px; margin: 0 auto; padding: 64px 40px 96px; }
+
+    .sec-eyebrow {
+      font-size: .72rem; color: var(--gold); letter-spacing: .14em;
+      text-transform: uppercase; font-weight: 500; margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: var(--serif); font-size: 1.6rem; font-weight: 700;
+      color: var(--text); margin-bottom: 8px; line-height: 1.4;
+    }
+    .sec-desc { color: var(--muted); font-size: .9rem; font-weight: 300; line-height: 1.8; margin-bottom: 36px; }
+
+    /* ── ADMIN CARDS ── */
+    .admin-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border); border: 1px solid var(--border);
+    }
+    .admin-card {
+      background: var(--bg2); padding: 32px 26px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: background .25s;
+    }
+    .admin-card:hover { background: var(--bg3); }
+    .admin-card-icon { font-size: 1.6rem; margin-bottom: 2px; }
+    .admin-card-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--gold); opacity: .7;
+    }
+    .admin-card-title {
+      font-family: var(--serif); font-size: 1.2rem; font-weight: 700;
+      color: var(--text); line-height: 1.4;
+    }
+    .admin-card-divider { height: 1px; background: var(--border); margin: 4px 0; }
+    .admin-card-desc {
+      font-size: .85rem; color: var(--muted); font-weight: 300; line-height: 1.8;
+    }
+    .admin-card-list {
+      list-style: none; display: flex; flex-direction: column; gap: 7px; flex: 1;
+    }
+    .admin-card-list li {
+      font-size: .84rem; color: var(--muted); font-weight: 300;
+      display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+    }
+    .admin-card-list li::before {
+      content: '—'; color: var(--gold); flex-shrink: 0; font-weight: 400;
+    }
+    .admin-card-note {
+      background: rgba(43,42,76,0.08); border-left: 2px solid var(--gold);
+      padding: 9px 14px; font-size: .82rem; color: var(--muted); font-weight: 300; line-height: 1.6;
+    }
+    .admin-card-note strong { color: var(--text); font-weight: 500; }
+
+    /* ── PRICE ── */
+    .admin-card-price {
+      padding-top: 12px; border-top: 1px solid var(--border); margin-top: 4px;
+    }
+    .admin-price {
+      font-family: var(--serif); font-size: 1.4rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .admin-price sub {
+      font-family: var(--sans); font-size: .72rem; color: var(--muted);
+      font-weight: 300; vertical-align: baseline;
+    }
+    .admin-price-note {
+      font-size: .72rem; color: var(--muted); font-weight: 300; margin-top: 4px;
+    }
+
+    /* ── CTA CARD ── */
+    .admin-card-cta {
+      background: rgba(43,42,76,.06);
+      border-color: var(--gold);
+    }
+
+    /* ── TRAVEL ADDON ── */
+    .travel-addon {
+      margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .addon-label {
+      font-size: .78rem; font-weight: 500; color: var(--gold); letter-spacing: .04em;
+    }
+    .addon-select {
+      background: var(--bg); border: 1px solid var(--border); color: var(--text);
+      font-family: var(--sans); font-size: .85rem; padding: 10px 12px;
+      outline: none; transition: border-color .2s; font-weight: 300;
+      cursor: pointer; -webkit-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C8A957' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center;
+      padding-right: 32px;
+    }
+    .addon-select:focus { border-color: var(--gold); }
+    .addon-select option, .addon-select optgroup {
+      background: var(--bg2); color: var(--text);
+    }
+    .addon-select optgroup { color: var(--gold); font-weight: 600; font-style: normal; }
+    .addon-link {
+      font-size: .78rem; color: var(--gold); text-decoration: none;
+      font-weight: 400; transition: opacity .2s; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .addon-link:hover { opacity: .7; }
+
+    .card-btn {
+      display: block; width: 100%; padding: 12px; border: none;
+      font-family: var(--sans); font-size: .85rem; font-weight: 700;
+      letter-spacing: .06em; cursor: pointer; transition: all .2s; text-align: center;
+    }
+    .card-btn-gold { background: var(--red); color: #fff; }
+    .card-btn-gold:hover { background: var(--red2); }
+    .card-btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .card-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .admin-cta-bar {
+      margin-top: 48px; padding: 32px;
+      border: 1px solid var(--gold);
+      background: rgba(43,42,76,0.06);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .admin-cta-text {
+      font-size: .9rem; color: var(--muted); font-weight: 300; line-height: 1.8;
+    }
+    .admin-cta-text strong { color: var(--text); font-family: var(--serif); font-size: 1.05rem; font-weight: 700; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+      justify-content: center; align-items: center; padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--bg2); border: 1px solid var(--border);
+      width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto;
+      padding: 36px 32px; position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; color: var(--muted);
+      font-size: 1.6rem; cursor: pointer; line-height: 1; transition: color .2s;
+    }
+    .modal-close:hover { color: var(--text); }
+    .modal-header { margin-bottom: 28px; }
+    .modal-title {
+      font-family: var(--serif); font-size: 1.4rem; font-weight: 700;
+      color: var(--text); margin-top: 4px;
+    }
+    .modal-form { display: flex; flex-direction: column; gap: 18px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: .8rem; font-weight: 500; color: var(--gold); letter-spacing: .06em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); font-family: var(--sans); font-size: .9rem;
+      padding: 11px 14px; outline: none; transition: border-color .2s; font-weight: 300;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); opacity: .6; }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--gold); }
+    .form-group select option,
+    .form-group select optgroup { background: var(--bg2); color: var(--text); }
+    .form-group select optgroup { color: var(--gold); font-weight: 600; font-style: normal; }
+    .form-group textarea { resize: vertical; }
+    .modal-success { text-align: center; padding: 32px 0; }
+    .modal-success .check-icon { font-size: 3rem; margin-bottom: 16px; }
+    .modal-success .msg { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .modal-success .sub { font-size: .88rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 48px 40px 32px; }
+    .footer-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-col-title { font-size: .72rem; font-weight: 700; color: var(--gold); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: .82rem; font-weight: 300; margin-bottom: 8px; transition: color .2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-col p { font-size: .82rem; color: var(--muted); font-weight: 300; line-height: 1.7; margin-bottom: 4px; }
+    .footer-brand { font-family: var(--serif); font-size: 1.3rem; font-weight: 900; color: var(--gold); margin-bottom: 8px; }
+    .footer-brand span { display: block; font-family: var(--sans); font-size: .68rem; color: var(--muted); font-weight: 300; letter-spacing: .1em; margin-top: 4px; }
+    .footer-bottom { max-width: 1000px; margin: 0 auto; border-top: 1px solid var(--border); padding-top: 20px; font-size: .72rem; color: var(--muted); font-weight: 300; }
+
+    @media (max-width: 900px) {
+      .admin-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .admin-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      footer { padding: 36px 20px 24px; }
+      .hero { padding: 56px 20px 44px; }
+      .page { padding: 48px 20px 72px; }
+      .admin-cta-bar { flex-direction: column; text-align: center; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a class="nav-logo" href="index.html">弘越心選</a>
+    <span class="nav-sub">弘越地產 官方合作平臺</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首頁</a>
+    <a href="apply.html">簽證服務</a>
+    <a href="fasttrack.html">快速通關</a>
+    <a href="admin.html" class="active">行政辦理</a>
+    <a href="travel.html">旅遊行程</a>
+    <a href="#">弘越地產 ↗</a>
+    <button class="nav-cta" onclick="openModal('立即諮詢')">立即諮詢</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">弘越地產 × 行政辦理服務</div>
+  <h1>一站式<em>行政辦理</em><br />安心置產無煩惱</h1>
+  <div class="hero-en">One-Stop Property Administration.</div>
+  <div class="hero-tagline">
+    從簽約到交屋、從辦證到開戶，所有越南置產的行政流程，<br />
+    都由我們的<strong>專業團隊全程代辦</strong>，讓你專注投資，不必煩惱文件。
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="page">
+
+  <div class="admin-grid">
+
+    <!-- 1. 粉紅簿（房產證） -->
+    <div class="admin-card">
+      <div class="admin-card-icon">📋</div>
+      <div class="admin-card-label">Pink Book</div>
+      <div class="admin-card-title">粉紅簿（房產證）辦理</div>
+      <div class="admin-card-divider"></div>
+      <div class="admin-card-desc">
+        越南房產所有權的正式證明文件，等同於台灣的房屋權狀。我們協助您完成從文件準備、公證到送件的完整流程。
+      </div>
+      <ul class="admin-card-list">
+        <li>文件翻譯與公證</li>
+        <li>護照認證協助</li>
+        <li>代送越南地政單位</li>
+        <li>進度追蹤與即時回報</li>
+        <li>粉紅簿領取與寄送</li>
+      </ul>
+      <div class="admin-card-note">
+        <strong>辦理時程：</strong>約 3–6 個月（依各地政單位而定）
+      </div>
+      <div class="admin-card-price">
+        <div class="admin-price">價格待定 <sub>/ 件</sub></div>
+        <div class="admin-price-note">實際費用依案件複雜度報價</div>
+      </div>
+      <button class="card-btn card-btn-outline" onclick="openModal('粉紅簿（房產證）辦理')">了解詳情 × 預約辦理</button>
+    </div>
+
+    <!-- 2. 買賣合約簽署 -->
+    <div class="admin-card">
+      <div class="admin-card-icon">✍️</div>
+      <div class="admin-card-label">Contract</div>
+      <div class="admin-card-title">買賣合約簽署</div>
+      <div class="admin-card-divider"></div>
+      <div class="admin-card-desc">
+        購買越南房產涉及多份法律文件，我們提供中文翻譯協助，讓您了解合約內容，並提醒後續付款時程。
+      </div>
+      <ul class="admin-card-list">
+        <li>合約內容中文翻譯協助說明</li>
+        <li>後續付款時程提醒</li>
+      </ul>
+      <div class="admin-card-note">
+        <strong>服務方式：</strong>必須親赴越南簽署
+      </div>
+      <div class="admin-card-price">
+        <div class="admin-price">價格待定 <sub>/ 件</sub></div>
+        <div class="admin-price-note">依合約類型與服務內容報價</div>
+      </div>
+      <button class="card-btn card-btn-outline" onclick="openModal('買賣合約簽署')">了解詳情 × 預約簽約</button>
+    </div>
+
+    <!-- 3. 交屋驗收 -->
+    <div class="admin-card">
+      <div class="admin-card-icon">🏠</div>
+      <div class="admin-card-label">Inspection</div>
+      <div class="admin-card-title">委託交屋驗收服務</div>
+      <div class="admin-card-divider"></div>
+      <div class="admin-card-desc">
+        不方便親自到越南交屋？委託我們的專業驗屋團隊，依據標準檢查清單逐項驗收，附帶完整圖文報告。
+      </div>
+      <ul class="admin-card-list">
+        <li>室內裝修與建材品質檢查</li>
+        <li>水電管線功能測試</li>
+        <li>門窗五金密合度檢驗</li>
+        <li>完整圖文驗收報告</li>
+        <li>缺失清單與建商交涉</li>
+      </ul>
+      <div class="admin-card-note">
+        <strong>驗收報告：</strong>48 小時內提供含照片的完整報告
+      </div>
+      <div class="admin-card-price">
+        <div class="admin-price">價格待定 <sub>/ 套</sub></div>
+        <div class="admin-price-note">依房型坪數報價</div>
+      </div>
+      <button class="card-btn card-btn-outline" onclick="openModal('委託交屋驗收服務')">了解詳情 × 預約驗屋</button>
+    </div>
+
+    <!-- 4. 越南銀行 × 證券開戶 -->
+    <div class="admin-card">
+      <div class="admin-card-icon">🏦</div>
+      <div class="admin-card-label">Banking & Securities</div>
+      <div class="admin-card-title">越南銀行 × 證券開戶</div>
+      <div class="admin-card-divider"></div>
+      <div class="admin-card-desc">
+        購買房產需要當地銀行帳戶進行匯款與收租；投資越南股市則需要證券帳戶。我們提供專人陪同至銀行與券商辦理開戶，一次搞定。
+      </div>
+      <ul class="admin-card-list">
+        <li>銀行開戶陪同辦理（渣打銀行 / 匯豐銀行）</li>
+        <li>開戶所需文件準備協助</li>
+        <li>中文全程陪同翻譯溝通</li>
+        <li>證券開戶陪同辦理</li>
+      </ul>
+      <div class="admin-card-note">
+        <strong>辦理時間：</strong>銀行約 1–2 小時 + 證券約 1 小時（需本人親辦，可同日完成）
+      </div>
+      <div class="admin-card-price">
+        <div class="admin-price">價格待定 <sub>/ 套</sub></div>
+        <div class="admin-price-note">銀行+證券一套式報價</div>
+      </div>
+      <button class="card-btn card-btn-outline" onclick="openModal('越南銀行 × 證券開戶')">了解詳情 × 預約開戶</button>
+    </div>
+
+    <!-- 5. 租車 / 包車服務 -->
+    <div class="admin-card">
+      <div class="admin-card-icon">🚗</div>
+      <div class="admin-card-label">Transportation</div>
+      <div class="admin-card-title">租車 × 包車服務</div>
+      <div class="admin-card-divider"></div>
+      <div class="admin-card-desc">
+        無論是機場接送、建案考察、旅遊觀光或商務出行，提供全程中文司機包車服務，安全舒適不迷路。
+      </div>
+      <ul class="admin-card-list">
+        <li>機場接送（單程 / 來回）</li>
+        <li>半日 / 全日包車</li>
+        <li>建案考察專車安排</li>
+        <li>跨城市長途包車</li>
+        <li>中文司機全程服務</li>
+      </ul>
+      <div class="admin-card-note">
+        <strong>服務城市：</strong>河內、胡志明市、海防、峴港、北江
+      </div>
+      <div class="admin-card-price">
+        <div class="admin-price">價格待定 <sub>/ 趟</sub></div>
+        <div class="admin-price-note">依車型、時數與城市報價</div>
+      </div>
+      <button class="card-btn card-btn-outline" onclick="openModal('租車 × 包車服務')">了解詳情 × 預約包車</button>
+    </div>
+
+    <!-- 6. CTA 卡片（填滿第三格） -->
+    <div class="admin-card admin-card-cta">
+      <div class="admin-card-icon">💬</div>
+      <div class="admin-card-label">Free Consultation</div>
+      <div class="admin-card-title">不確定需要哪些服務？</div>
+      <div class="admin-card-divider"></div>
+      <div class="admin-card-desc">
+        告訴我們您目前的置產階段與需求，由專人為您量身規劃最適合的行政辦理組合，搭配旅遊行程一次安排。
+      </div>
+      <ul class="admin-card-list">
+        <li>免費一對一諮詢</li>
+        <li>客製化服務組合</li>
+        <li>行政+旅遊一站式安排</li>
+        <li>中文全程溝通</li>
+      </ul>
+      <div style="flex:1"></div>
+      <button class="card-btn card-btn-gold" onclick="openModal('免費諮詢 × 客製方案')">免費諮詢 × 客製方案</button>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-header">
+      <div class="sec-eyebrow">Reservation</div>
+      <div class="modal-title" id="modal-title">預約服務</div>
+    </div>
+    <form class="modal-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="form-date">預約日期</label>
+        <input type="date" id="form-date" name="date" required />
+      </div>
+      <div class="form-group">
+        <label for="form-name">姓名</label>
+        <input type="text" id="form-name" name="name" placeholder="請輸入您的姓名" required />
+      </div>
+      <div class="form-group">
+        <label for="form-line">Line ID</label>
+        <input type="text" id="form-line" name="line" placeholder="請輸入您的 Line ID" />
+      </div>
+      <div class="form-group">
+        <label for="form-wechat">微信 WeChat</label>
+        <input type="text" id="form-wechat" name="wechat" placeholder="請輸入您的微信號" />
+      </div>
+      <div class="form-group">
+        <label for="form-phone">手機號碼</label>
+        <input type="tel" id="form-phone" name="phone" placeholder="+886 / +84 / +1" required />
+      </div>
+      <div class="form-group">
+        <label>是否搭配旅遊行程？</label>
+        <select name="travel">
+          <option value="">不需要，謝謝</option>
+          <optgroup label="建案考察（免費）">
+            <option value="河內房產考察（2天）">河內房產考察（2天）</option>
+            <option value="河內+海防房產考察（2天）">河內 + 海防房產考察（2天）</option>
+            <option value="胡志明市項目考察（1-2天）">胡志明市項目考察（1–2天）</option>
+          </optgroup>
+          <optgroup label="北越旅遊（河內出發）">
+            <option value="下龍灣兩天一夜郵輪">下龍灣兩天一夜郵輪</option>
+            <option value="寧平陸龍灣一日遊">寧平陸龍灣一日遊</option>
+            <option value="沙巴梯田兩天一夜">沙巴梯田兩天一夜</option>
+            <option value="河內市區文化一日遊">河內市區文化一日遊</option>
+          </optgroup>
+          <optgroup label="南越旅遊（胡志明市出發）">
+            <option value="胡志明市區文化一日遊">胡志明市區文化一日遊</option>
+            <option value="古芝地道歷史一日遊">古芝地道歷史一日遊</option>
+            <option value="湄公河（美托）一日遊">湄公河（美托）一日遊</option>
+            <option value="頭頓海濱兩天一夜">頭頓海濱兩天一夜</option>
+            <option value="美奈沙丘兩天一夜">美奈沙丘兩天一夜</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="form-note">備註（選填）</label>
+        <textarea id="form-note" name="note" rows="3" placeholder="如有特殊需求請在此說明"></textarea>
+      </div>
+      <button type="submit" class="card-btn card-btn-gold" style="margin-top:8px;">確認送出預約</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand">弘越心選<span>HONG YUE XIN XUAN</span></div>
+      <p>弘越地產官方合作平臺<br />深耕越南八年，一站式服務</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">服務項目</div>
+      <a href="apply.html">越南電子簽證</a>
+      <a href="fasttrack.html">機場快速通關</a>
+      <a href="admin.html">行政辦理服務</a>
+      <a href="travel.html">旅遊行程</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">聯絡我們</div>
+      <a href="#">LINE 官方帳號</a>
+      <a href="#">WeChat: yuexin_vn</a>
+      <a href="#">Email: info@yuexin.vn</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">相關連結</div>
+      <a href="#">弘越地產官網 ↗</a>
+      <a href="#">服務條款</a>
+      <a href="#">隱私政策</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 弘越心選 弘越心選 · 讓你安心置產，看見越南</div>
+</footer>
+
+<script>
+  function openModal(serviceName) {
+    document.getElementById('modal-title').textContent = '預約 — ' + serviceName;
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var form = document.querySelector('.modal-form');
+    if (form) { form.reset(); form.style.display = 'flex'; }
+    var success = document.querySelector('.modal-success');
+    if (success) success.remove();
+  }
+  function closeModal(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    var modal = form.closest('.modal');
+    form.style.display = 'none';
+    var success = document.createElement('div');
+    success.className = 'modal-success';
+    success.innerHTML = '<div class="check-icon">✓</div>'
+      + '<div class="msg">預約已送出</div>'
+      + '<div class="sub">感謝您的預約，我們的專員將於 24 小時內與您聯繫。<br />如有急件請直接聯繫客服。</div>';
+    modal.appendChild(success);
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>

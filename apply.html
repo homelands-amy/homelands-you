@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>越南電子簽證申請 — 弘越心選</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#2B2A4C; --bg2:#1F1E3A; --bg3:#3D3C5C;
+      --gold:#2B2A4C; --gold2:#1F1E3A;--red:#B31312;--red2:#8F0F0F;--salmon:#EA906C;
+      --gold-dim:rgba(43,42,76,0.15); --gold-line:rgba(43,42,76,0.25);
+      --text:#EEE2DE; --muted:#8A7E82;
+      --border:rgba(43,42,76,0.18);
+      --serif:'Noto Serif TC',serif; --sans:'Noto Sans TC',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(43,42,76,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-left{display:flex;align-items:center;gap:20px}
+    .nav-logo{font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--gold);letter-spacing:.05em;text-decoration:none;line-height:1}
+    .nav-sub{font-size:.72rem;color:var(--muted);letter-spacing:.08em;border-left:1px solid var(--border);padding-left:16px;font-weight:300}
+    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:300;letter-spacing:.04em;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-links a.active{color:var(--gold)}
+    .nav-cta{background:var(--red);color:#fff;font-family:var(--sans);font-weight:700;border:none;padding:9px 22px;cursor:pointer;font-size:.85rem;letter-spacing:.04em;transition:background .2s}
+    .nav-cta:hover{background:var(--red2)}
+
+    /* HERO */
+    .hero{padding:80px 40px 64px;background:linear-gradient(160deg,rgba(43,42,76,.06) 0%,transparent 50%);border-bottom:1px solid var(--border);text-align:center}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);letter-spacing:.12em;font-weight:300;margin-bottom:24px}
+    .hero-eyebrow::before,.hero-eyebrow::after{content:'——';color:var(--gold)}
+    .hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.25;margin-bottom:16px}
+    .hero h1 em{color:var(--red);font-style:normal}
+    .hero-en{font-family:var(--serif);font-style:italic;font-size:clamp(.8rem,1.4vw,.95rem);color:var(--muted);letter-spacing:.18em;margin-bottom:24px}
+    .hero-desc{font-size:.95rem;color:var(--muted);font-weight:300;line-height:1.9;max-width:560px;margin:0 auto 32px}
+    .hero-desc strong{color:var(--text);font-weight:500}
+    .hero-price{font-family:var(--serif);font-size:1.1rem;color:var(--gold);margin-bottom:32px}
+    .hero-price s{color:var(--muted);font-size:.85rem;font-weight:300;font-family:var(--sans)}
+    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;font-family:var(--sans);font-size:.9rem;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:all .2s;text-decoration:none;border:none}
+    .btn-gold{background:var(--red);color:#fff}
+    .btn-gold:hover{background:var(--red2)}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* TRUST BADGES */
+    .trust-bar{display:flex;justify-content:center;gap:0;flex-wrap:wrap;border:1px solid var(--border);max-width:800px;margin:0 auto}
+    .trust-item{flex:1;min-width:160px;padding:16px 20px;text-align:center;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+    .trust-item:last-child{border-right:none}
+    .trust-icon{font-size:1.4rem}
+    .trust-label{font-size:.78rem;font-weight:500;color:var(--text)}
+    .trust-sub{font-size:.7rem;color:var(--muted);font-weight:300}
+
+    /* SECTION */
+    .section{max-width:1000px;margin:0 auto;padding:72px 40px}
+    .section-border{border-bottom:1px solid var(--border)}
+    .sec-eyebrow{font-size:.72rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:10px}
+    .sec-title{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.4}
+    .sec-desc{color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.8;margin-bottom:36px}
+    .sec-center{text-align:center}
+
+    /* WHY US - FEATURES */
+    .features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .features-grid .feature:last-child{grid-column:1 / -1}
+    .feature{background:var(--bg2);padding:32px 28px;transition:background .25s}
+    .feature:hover{background:var(--bg3)}
+    .feature-icon{font-size:1.6rem;margin-bottom:12px}
+    .feature-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;margin-bottom:8px}
+    .feature-desc{font-size:.84rem;color:var(--muted);font-weight:300;line-height:1.7}
+
+    /* HOW IT WORKS */
+    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .step{background:var(--bg2);padding:32px 28px;position:relative}
+    .step-num{font-family:var(--serif);font-size:2.4rem;font-weight:900;color:var(--gold);opacity:.3;line-height:1;margin-bottom:14px}
+    .step-title{font-weight:600;margin-bottom:6px;font-size:.95rem}
+    .step-desc{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.7}
+    .step-time{margin-top:32px;text-align:center;font-size:.85rem;color:var(--gold);font-weight:400}
+
+    /* COMPARISON TABLE */
+    .compare-table{width:100%;border-collapse:collapse;border:1px solid var(--border)}
+    .compare-table th,.compare-table td{padding:14px 20px;text-align:left;border-bottom:1px solid var(--border);font-size:.85rem;font-weight:300}
+    .compare-table th{background:var(--bg2);color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .compare-table td:first-child{color:var(--muted);font-weight:400;width:30%}
+    .compare-table .col-us{background:rgba(43,42,76,.05);color:var(--text);font-weight:400}
+    .compare-table .col-other{color:var(--muted)}
+    .compare-table .check{color:var(--gold);font-weight:700}
+    .compare-table .cross{color:#6b5555}
+
+    /* VISA PLANS */
+    .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .plan{background:var(--bg2);padding:28px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:background .25s}
+    .plan:hover{background:var(--bg3)}
+    .plan.popular{background:rgba(43,42,76,.06)}
+    .plan.popular::after{content:'熱門首選';position:absolute;top:16px;right:-24px;background:var(--gold);color:var(--bg);font-size:.68rem;font-weight:700;padding:4px 36px;transform:rotate(30deg);letter-spacing:.06em}
+    .plan-tier{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .plan.popular .plan-tier{color:var(--gold)}
+    .plan-name{font-family:var(--serif);font-size:1.15rem;font-weight:700}
+    .plan-meta{display:flex;gap:12px;flex-wrap:wrap}
+    .plan-tag{font-size:.72rem;padding:3px 10px;border:1px solid var(--border);color:var(--muted);font-weight:300}
+    .plan-divider{height:1px;background:var(--border)}
+    .plan-desc{font-size:.84rem;color:var(--muted);font-weight:300;line-height:1.6}
+    .plan-features{list-style:none;display:flex;flex-direction:column;gap:7px;flex:1}
+    .plan-features li{font-size:.83rem;color:var(--muted);font-weight:300;display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+    .plan-features li::before{content:'—';color:var(--gold);flex-shrink:0}
+    .plan-price{padding-top:4px}
+    .price-old{font-size:.78rem;color:var(--muted);text-decoration:line-through;margin-bottom:4px;font-weight:300}
+    .price-new{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--text);line-height:1}
+    .price-new sub{font-family:var(--sans);font-size:.75rem;color:var(--muted);font-weight:300;vertical-align:baseline}
+    .price-usd{font-size:.78rem;color:var(--muted);font-weight:300;margin-top:4px}
+    .plan-btn{display:block;width:100%;padding:12px;border:none;font-family:var(--sans);font-size:.85rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .2s;text-align:center}
+    .plan-btn-gold{background:var(--gold);color:var(--bg)}
+    .plan-btn-gold:hover{background:var(--gold2)}
+    .plan-btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .plan-btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+    .plan-note{font-size:.72rem;color:var(--muted);font-weight:300;text-align:center;margin-top:4px}
+
+    /* REVIEWS */
+    .reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .review{background:var(--bg2);padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:background .25s}
+    .review:hover{background:var(--bg3)}
+    .review-stars{color:var(--gold);font-size:.9rem;letter-spacing:2px}
+    .review-text{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.7;flex:1;font-style:italic}
+    .review-author{font-size:.8rem;color:var(--text);font-weight:500}
+    .review-loc{font-size:.72rem;color:var(--muted);font-weight:300}
+
+    /* GUARANTEE */
+    .guarantee-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+    .guarantee{background:var(--bg2);padding:32px 28px;transition:background .25s}
+    .guarantee:hover{background:var(--bg3)}
+    .guarantee-icon{font-size:1.6rem;margin-bottom:12px}
+    .guarantee-title{font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:10px}
+    .guarantee-desc{font-size:.84rem;color:var(--muted);font-weight:300;line-height:1.8}
+
+    /* FAQ */
+    .faq-list{border:1px solid var(--border)}
+    .faq-item{border-bottom:1px solid var(--border)}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;cursor:pointer;font-size:.9rem;font-weight:500;transition:background .2s;gap:16px}
+    .faq-q:hover{background:var(--bg3)}
+    .faq-q .arrow{color:var(--gold);font-size:1.2rem;transition:transform .2s;flex-shrink:0}
+    .faq-item.open .faq-q .arrow{transform:rotate(45deg)}
+    .faq-a{display:none;padding:0 24px 18px;font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.8}
+    .faq-item.open .faq-a{display:block}
+
+    /* FINAL CTA */
+    .cta-section{text-align:center;padding:72px 40px;border-top:1px solid var(--border);background:linear-gradient(0deg,rgba(43,42,76,.04) 0%,transparent 100%)}
+    .cta-section .sec-title{font-size:2rem}
+
+    /* NOTICE */
+    .notice{margin-top:32px;background:var(--gold-dim);border:1px solid var(--border);padding:18px 22px;display:flex;gap:14px;align-items:flex-start}
+    .notice-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+    .notice-text{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.8}
+    .notice-text strong{color:var(--text);font-weight:500}
+
+    /* MODAL */
+    .modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);justify-content:center;align-items:center;padding:24px}
+    .modal-overlay.open{display:flex}
+    .modal{background:var(--bg2);border:1px solid var(--border);width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:36px 32px;position:relative}
+    .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--muted);font-size:1.6rem;cursor:pointer;line-height:1;transition:color .2s}
+    .modal-close:hover{color:var(--text)}
+    .modal-header{margin-bottom:28px}
+    .modal-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-top:4px}
+    .modal-form{display:flex;flex-direction:column;gap:18px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group label{font-size:.8rem;font-weight:500;color:var(--gold);letter-spacing:.06em}
+    .form-group input,.form-group textarea{background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:.9rem;padding:11px 14px;outline:none;transition:border-color .2s;font-weight:300}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);opacity:.6}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--gold)}
+    .form-group textarea{resize:vertical}
+    .modal-success{text-align:center;padding:32px 0}
+    .modal-success .check-icon{font-size:3rem;margin-bottom:16px}
+    .modal-success .msg{font-family:var(--serif);font-size:1.2rem;font-weight:700;margin-bottom:8px}
+    .modal-success .sub{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.7}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:48px 40px 32px}
+    .footer-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+    .footer-col-title{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+    .footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:300;margin-bottom:8px;transition:color .2s}
+    .footer-col a:hover{color:var(--gold)}
+    .footer-col p{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:4px}
+    .footer-brand{font-family:var(--serif);font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:8px}
+    .footer-brand span{display:block;font-family:var(--sans);font-size:.68rem;color:var(--muted);font-weight:300;letter-spacing:.1em;margin-top:4px}
+    .footer-bottom{max-width:1000px;margin:0 auto;border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-copy{font-size:.72rem;color:var(--muted);font-weight:300}
+
+    @media(max-width:680px){
+      nav{padding:0 20px}.nav-links{display:none}
+      .hero{padding:56px 20px 48px}.section{padding:56px 20px}
+      .steps-grid,.guarantee-grid{grid-template-columns:1fr}
+      .trust-bar{flex-direction:column}.trust-item{border-right:none;border-bottom:1px solid var(--border)}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+      footer{padding:36px 20px 24px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a class="nav-logo" href="index.html">弘越心選</a>
+    <span class="nav-sub">弘越地產 官方合作平臺</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首頁</a>
+    <a href="apply.html" class="active">簽證服務</a>
+    <a href="fasttrack.html">快速通關</a>
+    <a href="admin.html">行政辦理</a>
+    <a href="travel.html">旅遊行程</a>
+    <a href="#">弘越地產 ↗</a>
+    <button class="nav-cta" onclick="openModal('立即申請')">立即申請</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">弘越心選 × 越南電子簽證</div>
+  <h1>越南簽證<br />讓你<em>安心出發</em></h1>
+  <div class="hero-en">Vietnam E-Visa. Worry-Free.</div>
+  <div class="hero-desc">
+    專人協助審件，資料填錯即時通知補正，<br />
+    <strong>不通過全額退費</strong>，讓你不再為簽證煩惱。
+  </div>
+  <div class="hero-price">
+    簽證 <s>NT$1,500</s> <strong>NT$1,268 起</strong>
+  </div>
+  <div class="hero-btns">
+    <button class="btn btn-gold" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">選擇方案 →</button>
+    <a class="btn btn-outline" href="fasttrack.html">快速通關服務</a>
+  </div>
+  <div class="trust-bar">
+    <div class="trust-item"><div class="trust-icon">⚡</div><div class="trust-label">最快當日出簽</div><div class="trust-sub">上午提交，當日核發</div></div>
+    <div class="trust-item"><div class="trust-icon">🛡️</div><div class="trust-label">不過全額退費</div><div class="trust-sub">資料完整未通過即退</div></div>
+    <div class="trust-item"><div class="trust-icon">👤</div><div class="trust-label">專人審件把關</div><div class="trust-sub">逐筆人工確認資料</div></div>
+    <div class="trust-item"><div class="trust-icon">📱</div><div class="trust-label">即時進度通知</div><div class="trust-sub">LINE / WeChat 推送</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<div class="section section-border">
+  <div class="sec-eyebrow">Why 弘越心選</div>
+  <div class="sec-title">為什麼選擇弘越心選</div>
+  <div class="sec-desc">深耕越南八年，我們不只是代辦簽證，更懂得每個環節的細節。</div>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">專人逐筆審件</div>
+      <div class="feature-desc">每份申請都由專人逐一確認護照資訊、照片規格與表格填寫，確保送件前零錯誤，大幅降低被退件的風險。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🛡️</div>
+      <div class="feature-title">退費保障</div>
+      <div class="feature-desc">資料完整且無違規紀錄，若因非個人因素未通過，我們承諾全額退還代辦費用，讓你申請零風險。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">即時進度追蹤</div>
+      <div class="feature-desc">透過 LINE 或微信即時推送申請進度，從送件、審核到核發，每一步你都清楚掌握，不再乾等。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🕐</div>
+      <div class="feature-title">週末照常服務</div>
+      <div class="feature-desc">急件不等人，我們的團隊週末照常處理，臨時出差或假期行程也能及時拿到簽證。</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🌏</div>
+      <div class="feature-title">八年在地經驗</div>
+      <div class="feature-desc">300+ 套房產管理、數千次簽證代辦經驗，深諳越南官方流程與法規變動，為你即時應對。</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section section-border">
+  <div class="sec-eyebrow">How It Works</div>
+  <div class="sec-title">三步驟完成簽證申請</div>
+  <div class="sec-desc">整個流程約 5 分鐘即可完成提交，我們來處理剩下的。</div>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">選擇方案 × 填寫資料</div>
+      <div class="step-desc">選擇適合您時程的方案，填寫入境日期、機場、護照資訊，系統即時檢查格式。</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">上傳護照 × 大頭照</div>
+      <div class="step-desc">上傳護照掃描檔與 2 吋大頭照，專人確認照片規格是否符合越南官方要求。</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">確認付款 × 等待核發</div>
+      <div class="step-desc">核對資料無誤後完成付款，簽證核發後即時通知下載，列印備用即可出發。</div>
+    </div>
+  </div>
+  <div class="step-time">約 5 分鐘完成提交 · 專人跟進至核發</div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="section section-border">
+  <div class="sec-eyebrow">Comparison</div>
+  <div class="sec-title">弘越心選 vs 傳統代辦</div>
+  <div class="sec-desc">同樣是代辦簽證，我們在每個環節都做得更到位。</div>
+  <table class="compare-table">
+    <thead>
+      <tr><th></th><th class="col-us">弘越心選</th><th class="col-other">傳統代辦</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>申請方式</td><td class="col-us check">線上填寫，5 分鐘完成</td><td class="col-other cross">來回傳送文件，需多次確認</td></tr>
+      <tr><td>資料審核</td><td class="col-us check">專人逐筆審件 + 即時通知補正</td><td class="col-other cross">人工比對，錯誤才退回</td></tr>
+      <tr><td>進度通知</td><td class="col-us check">LINE / 微信即時推送</td><td class="col-other cross">需自行詢問</td></tr>
+      <tr><td>退費保障</td><td class="col-us check">不通過全額退費</td><td class="col-other cross">大多不退費</td></tr>
+      <tr><td>價格透明</td><td class="col-us check">含政府規費，無隱藏費用</td><td class="col-other cross">規費另計，加價不透明</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- VISA PLANS -->
+<div class="section section-border" id="plans">
+  <div class="sec-eyebrow">Visa Plans</div>
+  <div class="sec-title">選擇適合您的簽證方案</div>
+  <div class="sec-desc">所有方案皆含越南政府規費與代辦服務費，無隱藏費用。</div>
+  <div class="plans-grid">
+
+    <div class="plan">
+      <div class="plan-tier">Lite · 14 工作日</div>
+      <div class="plan-name">輕旅入門</div>
+      <div class="plan-meta"><span class="plan-tag">30 天單次</span><span class="plan-tag">14 工作日</span></div>
+      <div class="plan-divider"></div>
+      <div class="plan-desc">時間充裕的旅客首選，適合提前規劃的觀光或短期商務行程。</div>
+      <ul class="plan-features">
+        <li>含越南政府規費</li>
+        <li>專人資料審核</li>
+        <li>進度即時通知</li>
+        <li>不通過全額退費</li>
+      </ul>
+      <div class="plan-price">
+        <div class="price-old">NT$1,500</div>
+        <div class="price-new">NT$1,268 <sub>/ 人</sub></div>
+        <div class="price-usd">≈ USD 39</div>
+      </div>
+      <button class="plan-btn plan-btn-outline" onclick="openModal('輕旅入門 — 30天單次')">選擇此方案</button>
+    </div>
+
+    <div class="plan popular">
+      <div class="plan-tier">Standard · 7 工作日</div>
+      <div class="plan-name">商務標準</div>
+      <div class="plan-meta"><span class="plan-tag">90 天單次/多次</span><span class="plan-tag">7 工作日</span></div>
+      <div class="plan-divider"></div>
+      <div class="plan-desc">最多人選擇的方案，適合商務出差、房產考察或多次入境需求。</div>
+      <ul class="plan-features">
+        <li>含越南政府規費</li>
+        <li>專人資料審核</li>
+        <li>優先排隊處理</li>
+        <li>進度即時通知</li>
+        <li>不通過全額退費</li>
+      </ul>
+      <div class="plan-price">
+        <div class="price-old">NT$2,200</div>
+        <div class="price-new">NT$1,880 <sub>/ 人</sub></div>
+        <div class="price-usd">≈ USD 58</div>
+      </div>
+      <button class="plan-btn plan-btn-gold" onclick="openModal('商務標準 — 90天')">選擇此方案</button>
+    </div>
+
+    <div class="plan">
+      <div class="plan-tier">Express · 2 工作日</div>
+      <div class="plan-name">快速處理</div>
+      <div class="plan-meta"><span class="plan-tag">90 天單次/多次</span><span class="plan-tag">2 工作日</span></div>
+      <div class="plan-divider"></div>
+      <div class="plan-desc">趕時間但不算最緊急，適合一週內出發的旅客。</div>
+      <ul class="plan-features">
+        <li>含越南政府規費</li>
+        <li>專人資料審核</li>
+        <li>加急優先處理</li>
+        <li>進度即時通知</li>
+        <li>不通過全額退費</li>
+      </ul>
+      <div class="plan-price">
+        <div class="price-old">NT$2,800</div>
+        <div class="price-new">NT$2,380 <sub>/ 人</sub></div>
+        <div class="price-usd">≈ USD 73</div>
+      </div>
+      <button class="plan-btn plan-btn-outline" onclick="openModal('快速處理 — 2工作日')">選擇此方案</button>
+    </div>
+
+    <div class="plan">
+      <div class="plan-tier">Rush · 隔日</div>
+      <div class="plan-name">衝刺件</div>
+      <div class="plan-meta"><span class="plan-tag">90 天單次/多次</span><span class="plan-tag">隔日核發</span></div>
+      <div class="plan-divider"></div>
+      <div class="plan-desc">明天就要出發？下午前提交，隔日上午核發。</div>
+      <ul class="plan-features">
+        <li>含越南政府規費</li>
+        <li>專人資料審核</li>
+        <li>最高優先處理</li>
+        <li>隔日核發保證</li>
+        <li>不通過全額退費</li>
+      </ul>
+      <div class="plan-price">
+        <div class="price-old">NT$3,800</div>
+        <div class="price-new">NT$3,180 <sub>/ 人</sub></div>
+        <div class="price-usd">≈ USD 98</div>
+      </div>
+      <button class="plan-btn plan-btn-outline" onclick="openModal('衝刺件 — 隔日核發')">選擇此方案</button>
+    </div>
+
+    <div class="plan">
+      <div class="plan-tier">Same-Day · 當日</div>
+      <div class="plan-name">當日閃電</div>
+      <div class="plan-meta"><span class="plan-tag">90 天單次/多次</span><span class="plan-tag">當日核發</span></div>
+      <div class="plan-divider"></div>
+      <div class="plan-desc">今天提交、今天拿到。限上午提交，適合最緊急的出發需求。</div>
+      <ul class="plan-features">
+        <li>含越南政府規費</li>
+        <li>專人即時跟進</li>
+        <li>當日核發保證</li>
+        <li>緊急取消退款保障</li>
+        <li>優先中文客服通道</li>
+      </ul>
+      <div class="plan-price">
+        <div class="price-old">NT$4,500</div>
+        <div class="price-new">NT$3,780 <sub>/ 人</sub></div>
+        <div class="price-usd">≈ USD 116</div>
+      </div>
+      <button class="plan-btn plan-btn-outline" onclick="openModal('當日閃電 — 當日核發')">選擇此方案</button>
+    </div>
+
+    <div class="plan">
+      <div class="plan-tier">Weekend · 週末</div>
+      <div class="plan-name">週末急件</div>
+      <div class="plan-meta"><span class="plan-tag">90 天單次/多次</span><span class="plan-tag">週末處理</span></div>
+      <div class="plan-divider"></div>
+      <div class="plan-desc">週末也能辦簽證，週五下班後提交，週一前拿到簽證。</div>
+      <ul class="plan-features">
+        <li>含越南政府規費</li>
+        <li>週末專人值班處理</li>
+        <li>進度即時通知</li>
+        <li>不通過全額退費</li>
+      </ul>
+      <div class="plan-price">
+        <div class="price-old">NT$3,200</div>
+        <div class="price-new">NT$2,680 <sub>/ 人</sub></div>
+        <div class="price-usd">≈ USD 82</div>
+      </div>
+      <button class="plan-btn plan-btn-outline" onclick="openModal('週末急件')">選擇此方案</button>
+    </div>
+
+  </div>
+  <div class="notice" style="margin-top:24px;">
+    <span class="notice-icon">ℹ</span>
+    <div class="notice-text">
+      <strong>工作日不含申請當日。</strong>例如選擇「7 工作日」方案，於週一提交，預計次週三核發。實際時程依越南官方審核速度為準。
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="section section-border">
+  <div class="sec-center">
+    <div class="sec-eyebrow">Reviews</div>
+    <div class="sec-title">客戶怎麼說</div>
+    <div class="sec-desc">來自台灣、香港及海外華人投資者的真實回饋。</div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">「第一次去越南看房，簽證交給弘越心選處理，兩天就拿到了。過程中 LINE 隨時回覆，非常安心。」</div>
+      <div class="review-author">Emily C.</div>
+      <div class="review-loc">台北 · 房產考察</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">「帶家人一起申請四份簽證，本來怕很麻煩，結果填一次資料就搞定，小孩的也幫忙處理了。推。」</div>
+      <div class="review-author">Kevin L.</div>
+      <div class="review-loc">高雄 · 家庭旅遊</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">「臨時被通知要去河內出差，用了當日閃電件，早上傳資料下午就收到簽證，救了一命。」</div>
+      <div class="review-author">James W.</div>
+      <div class="review-loc">香港 · 商務出差</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">「之前自己辦被退件兩次，浪費一堆時間。這次交給弘越心選，一次就過了，照片規格他們也幫忙調整。」</div>
+      <div class="review-author">Lisa H.</div>
+      <div class="review-loc">台中 · 觀光旅遊</div>
+    </div>
+  </div>
+</div>
+
+<!-- GUARANTEE -->
+<div class="section section-border">
+  <div class="sec-eyebrow">Guarantee</div>
+  <div class="sec-title">我們的承諾</div>
+  <div class="sec-desc">讓你的每一分錢都花得安心。</div>
+  <div class="guarantee-grid">
+    <div class="guarantee">
+      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-title">簽證退費保障</div>
+      <div class="guarantee-desc">
+        若您的資料完整且無違規紀錄，因非個人因素導致簽證未通過（如系統錯誤、不可抗力因素等），我們承諾全額退還代辦費用。退費將於確認後 7 個工作日內原路退回。
+      </div>
+    </div>
+    <div class="guarantee">
+      <div class="guarantee-icon">✈️</div>
+      <div class="guarantee-title">快速通關保障</div>
+      <div class="guarantee-desc">
+        若因我方疏失導致已預訂的快速通關服務無法執行（如專員未到場、通道安排錯誤等），我們將全額退費並補償 USD 20 作為不便補償。詳情請見服務條款。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section section-border">
+  <div class="sec-eyebrow">FAQ</div>
+  <div class="sec-title">常見問題</div>
+  <div class="sec-desc">找不到答案？歡迎透過 LINE 或微信聯繫我們。</div>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">弘越心選代辦跟自己申請有什麼不同？<span class="arrow">+</span></div><div class="faq-a">自行申請需要到越南官方網站填寫英文表格、自行裁切照片規格、並等待不確定的審核結果。透過弘越心選代辦，我們提供中文介面、專人審件、格式確認與退費保障，大幅降低被退件風險。</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">電子簽證（E-visa）跟落地簽有什麼差別？<span class="arrow">+</span></div><div class="faq-a">電子簽證在出發前即可取得，入境時直接走一般通道；落地簽則需抵達機場後才辦理，排隊時間較長且需準備邀請函。目前越南已全面開放電子簽證，我們建議優先選擇 E-visa。</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">簽證被拒絕的話怎麼辦？<span class="arrow">+</span></div><div class="faq-a">若您的資料完整且無越南入境違規紀錄，因非個人因素被拒簽，我們全額退還代辦費用。若因個人因素（如曾逾期停留、資料造假等），恕無法退費，但我們會在送件前先協助評估風險。</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">最快多久可以拿到簽證？<span class="arrow">+</span></div><div class="faq-a">最快為「當日閃電」方案，上午提交、當日核發。一般標準件約 7 個工作日。實際核發時間依越南移民局審核速度為準。</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">需要準備哪些文件？<span class="arrow">+</span></div><div class="faq-a">您只需要：(1) 護照掃描檔（有效期距入境日 6 個月以上）、(2) 2 吋白底大頭照電子檔。我們會協助確認照片規格是否符合要求。</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">可以幫小孩一起申請嗎？<span class="arrow">+</span></div><div class="faq-a">可以。未成年人同樣需要獨立的簽證，請準備小孩的護照掃描檔及大頭照。多人同時申請可享組合優惠，詳情請洽客服。</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">90 天多次入境是什麼意思？<span class="arrow">+</span></div><div class="faq-a">指簽證有效期 90 天內可多次進出越南，每次停留不超過規定天數。適合需要短期內多次往返的商務人士或房產投資者。</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">付款方式有哪些？<span class="arrow">+</span></div><div class="faq-a">目前支援信用卡（Visa / Mastercard / JCB）、LINE Pay、銀行轉帳。付款後即開始處理，無需等待入帳確認。</div></div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="sec-eyebrow">Ready?</div>
+  <div class="sec-title">越南簽證，現在就搞定</div>
+  <div class="hero-en" style="margin-bottom:20px">Apply Now. Travel Worry-Free.</div>
+  <div class="hero-desc">
+    3 個步驟、5 分鐘提交、專人審件把關、不通過全額退費。<br />
+    <strong>最快當日核發</strong>，讓你安心出發越南。
+  </div>
+  <div class="hero-price" style="margin-bottom:24px;">
+    簽證 <s>NT$1,500</s> <strong>NT$1,268 起</strong>，含政府規費
+  </div>
+  <button class="btn btn-gold" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">立即申請越南簽證 →</button>
+</section>
+
+<!-- MODAL -->
+<div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-header">
+      <div class="sec-eyebrow">Reservation</div>
+      <div class="modal-title" id="modal-title">預約服務</div>
+    </div>
+    <form class="modal-form" onsubmit="handleSubmit(event)">
+      <div class="form-group"><label>預約日期</label><input type="date" required /></div>
+      <div class="form-group"><label>姓名</label><input type="text" placeholder="請輸入您的姓名" required /></div>
+      <div class="form-group"><label>Line ID</label><input type="text" placeholder="請輸入您的 Line ID" /></div>
+      <div class="form-group"><label>微信 WeChat</label><input type="text" placeholder="請輸入您的微信號" /></div>
+      <div class="form-group"><label>手機號碼</label><input type="tel" placeholder="+886 / +84 / +1" required /></div>
+      <div class="form-group"><label>備註（選填）</label><textarea rows="3" placeholder="如有特殊需求請在此說明"></textarea></div>
+      <button type="submit" class="btn btn-gold" style="justify-content:center;width:100%">確認送出</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand">弘越心選<span>HONG YUE XIN XUAN</span></div>
+      <p>弘越地產官方合作平臺<br />深耕越南八年，一站式服務</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">服務項目</div>
+      <a href="apply.html">越南電子簽證</a>
+      <a href="fasttrack.html">機場快速通關</a>
+      <a href="admin.html">行政辦理服務</a>
+      <a href="travel.html">旅遊行程</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">聯絡我們</div>
+      <a href="#">LINE 官方帳號</a>
+      <a href="#">WeChat: yuexin_vn</a>
+      <a href="#">Email: info@yuexin.vn</a>
+      <p style="margin-top:4px">服務時間：09:00–21:00<br />（含週末及假日）</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">相關連結</div>
+      <a href="#">弘越地產官網 ↗</a>
+      <a href="#">服務條款</a>
+      <a href="#">隱私政策</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 弘越心選 弘越心選 · 讓你安心置產，看見越南</div>
+  </div>
+</footer>
+
+<script>
+function openModal(s){document.getElementById('modal-title').textContent='預約 — '+s;document.getElementById('modal-overlay').classList.add('open');document.body.style.overflow='hidden';var f=document.querySelector('.modal-form');if(f){f.reset();f.style.display='flex'}var x=document.querySelector('.modal-success');if(x)x.remove()}
+function closeModal(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow=''}
+function handleSubmit(e){e.preventDefault();var f=e.target,m=f.closest('.modal');f.style.display='none';var s=document.createElement('div');s.className='modal-success';s.innerHTML='<div class="check-icon">✓</div><div class="msg">預約已送出</div><div class="sub">感謝您的預約，我們的專員將於 24 小時內與您聯繫。</div>';m.appendChild(s)}
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()})
+</script>
+</body>
+</html>

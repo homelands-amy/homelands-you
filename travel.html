@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>旅遊配套行程 — 弘越心選</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#2B2A4C;--bg2:#1F1E3A;--bg3:#3D3C5C;--gold:#2B2A4C;--gold2:#1F1E3A;--red:#B31312;--red2:#8F0F0F;--salmon:#EA906C;--gold-dim:rgba(43,42,76,.15);--text:#EEE2DE;--muted:#8A7E82;--border:rgba(43,42,76,.18);--serif:'Noto Serif TC',serif;--sans:'Noto Sans TC',sans-serif}
+    html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(43,42,76,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-left{display:flex;align-items:center;gap:20px}
+    .nav-logo{font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--gold);letter-spacing:.05em;text-decoration:none;line-height:1}
+    .nav-sub{font-size:.72rem;color:var(--muted);letter-spacing:.08em;border-left:1px solid var(--border);padding-left:16px;font-weight:300}
+    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:300;letter-spacing:.04em;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}.nav-links a.active{color:var(--gold)}
+    .nav-cta{background:var(--red);color:#fff;font-family:var(--sans);font-weight:700;border:none;padding:9px 22px;cursor:pointer;font-size:.85rem;letter-spacing:.04em;transition:background .2s;text-decoration:none}
+    .nav-cta:hover{background:var(--red2)}
+
+    .hero{padding:80px 40px 64px;background:linear-gradient(160deg,rgba(43,42,76,.06) 0%,transparent 50%);border-bottom:1px solid var(--border);text-align:center}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);letter-spacing:.12em;font-weight:300;margin-bottom:24px}
+    .hero-eyebrow::before,.hero-eyebrow::after{content:'——';color:var(--gold)}
+    .hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.25;margin-bottom:16px}
+    .hero h1 em{color:var(--red);font-style:normal}
+    .hero-en{font-family:var(--serif);font-style:italic;font-size:clamp(.8rem,1.4vw,.95rem);color:var(--muted);letter-spacing:.18em;margin-bottom:24px}
+    .hero-desc{font-size:.95rem;color:var(--muted);font-weight:300;line-height:1.9;max-width:560px;margin:0 auto}
+    .hero-desc strong{color:var(--text);font-weight:500}
+
+    .section{max-width:1060px;margin:0 auto;padding:72px 40px}
+    .section-border{border-bottom:1px solid var(--border)}
+    .sec-eyebrow{font-size:.72rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:10px}
+    .sec-title{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.4}
+    .sec-desc{color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.8;margin-bottom:36px}
+
+    /* TOUR CARDS */
+    .tours-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .tours-grid-2{grid-template-columns:repeat(2,1fr)}
+    .tours-grid-south{grid-template-columns:repeat(2,1fr)}
+    .tours-grid-south .tour:nth-child(5){grid-column:1 / -1}
+    .tour{background:var(--bg2);padding:32px 28px;display:flex;flex-direction:column;gap:14px;transition:background .25s}
+    .tour:hover{background:var(--bg3)}
+    .tour.popular{background:rgba(43,42,76,.06);position:relative;overflow:hidden}
+    .tour.popular::after{content:'人氣推薦';position:absolute;top:16px;right:-24px;background:var(--gold);color:var(--bg);font-size:.68rem;font-weight:700;padding:4px 36px;transform:rotate(30deg);letter-spacing:.06em}
+    .tour-tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tour-tag{font-size:.7rem;padding:3px 10px;border:1px solid var(--border);color:var(--muted);font-weight:300}
+    .tour-tag-gold{border-color:var(--gold);color:var(--gold)}
+    .tour-name{font-family:var(--serif);font-size:1.2rem;font-weight:700}
+    .tour-desc{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.8}
+    .tour-divider{height:1px;background:var(--border)}
+    .tour-day{font-size:.78rem;color:var(--gold);font-weight:500;letter-spacing:.06em;margin-bottom:2px}
+    .tour-itinerary{list-style:none;display:flex;flex-direction:column;gap:7px;flex:1}
+    .tour-itinerary li{font-size:.83rem;color:var(--muted);font-weight:300;display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+    .tour-itinerary li::before{content:'—';color:var(--gold);flex-shrink:0}
+    .tour-highlight{background:rgba(43,42,76,.08);border-left:2px solid var(--gold);padding:9px 14px;font-size:.82rem;color:var(--gold);font-weight:400;line-height:1.6}
+    .tour-price{padding-top:4px}
+    .price-new{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);line-height:1}
+    .price-new sub{font-family:var(--sans);font-size:.75rem;color:var(--muted);font-weight:300;vertical-align:baseline}
+    .price-note{font-size:.72rem;color:var(--muted);font-weight:300;margin-top:4px}
+    .tour-btn{display:block;width:100%;padding:12px;border:none;font-family:var(--sans);font-size:.85rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .2s;text-align:center}
+    .btn-gold{background:var(--red);color:#fff}.btn-gold:hover{background:var(--red2)}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+    .notice{margin-top:32px;background:var(--gold-dim);border:1px solid var(--border);padding:18px 22px;display:flex;gap:14px;align-items:flex-start}
+    .notice-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+    .notice-text{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.8}
+    .notice-text strong{color:var(--text);font-weight:500}
+
+    /* MODAL */
+    .modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);justify-content:center;align-items:center;padding:24px}
+    .modal-overlay.open{display:flex}
+    .modal{background:var(--bg2);border:1px solid var(--border);width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:36px 32px;position:relative}
+    .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--muted);font-size:1.6rem;cursor:pointer;line-height:1;transition:color .2s}
+    .modal-close:hover{color:var(--text)}
+    .modal-header{margin-bottom:28px}
+    .modal-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-top:4px}
+    .modal-form{display:flex;flex-direction:column;gap:18px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group label{font-size:.8rem;font-weight:500;color:var(--gold);letter-spacing:.06em}
+    .form-group input,.form-group textarea,.form-group select{background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:.9rem;padding:11px 14px;outline:none;transition:border-color .2s;font-weight:300}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);opacity:.6}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold)}
+    .form-group textarea{resize:vertical}
+    .form-group select option,.form-group select optgroup{background:var(--bg2);color:var(--text)}
+    .modal-success{text-align:center;padding:32px 0}
+    .modal-success .check-icon{font-size:3rem;margin-bottom:16px}
+    .modal-success .msg{font-family:var(--serif);font-size:1.2rem;font-weight:700;margin-bottom:8px}
+    .modal-success .sub{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.7}
+
+    footer{border-top:1px solid var(--border);padding:48px 40px 32px}
+    .footer-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+    .footer-col-title{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+    .footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:300;margin-bottom:8px;transition:color .2s}
+    .footer-col a:hover{color:var(--gold)}
+    .footer-col p{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:4px}
+    .footer-brand{font-family:var(--serif);font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:8px}
+    .footer-brand span{display:block;font-family:var(--sans);font-size:.68rem;color:var(--muted);font-weight:300;letter-spacing:.1em;margin-top:4px}
+    .footer-bottom{max-width:1000px;margin:0 auto;border-top:1px solid var(--border);padding-top:20px;font-size:.72rem;color:var(--muted);font-weight:300}
+
+    @media(max-width:680px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:56px 20px 48px}.section{padding:56px 20px}.tours-grid,.tours-grid-2,.tours-grid-south{grid-template-columns:1fr}.tours-grid-south .tour:nth-child(5){grid-column:auto}.footer-grid{grid-template-columns:1fr 1fr;gap:28px}footer{padding:36px 20px 24px}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a class="nav-logo" href="index.html">弘越心選</a>
+    <span class="nav-sub">弘越地產 官方合作平臺</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首頁</a>
+    <a href="apply.html">簽證服務</a>
+    <a href="fasttrack.html">快速通關</a>
+    <a href="admin.html">行政辦理</a>
+    <a href="travel.html" class="active">旅遊行程</a>
+    <a href="#">弘越地產 ↗</a>
+    <button class="nav-cta" onclick="openModal('旅遊諮詢')">立即諮詢</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">弘越心選 × 旅遊配套行程</div>
+  <h1>來都來了<br />順便<em>玩一趟</em></h1>
+  <div class="hero-en">Business First. Pleasure Follows.</div>
+  <div class="hero-desc">
+    來越南辦理粉紅簿、簽合約或交屋之餘，<br />
+    順道安排 <strong>1–3 天的在地旅遊行程</strong>，<br />
+    讓每一趟越南之行，都不虛此行。
+  </div>
+</section>
+
+<!-- ═══ 建案考察 ═══ -->
+<div class="section section-border">
+  <div class="sec-eyebrow">Property Inspection</div>
+  <div class="sec-title">最新優質建案考察</div>
+  <div class="sec-desc">
+    來越南辦理行政事務，順便看看有沒有值得入手的新項目。<br />
+    由弘越地產專業顧問帶隊，實地走訪最新優質建案，提供完整分析與投資建議。
+  </div>
+
+  <div class="tours-grid">
+
+    <!-- 河內房產考察 -->
+    <div class="tour popular">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">2 天</span>
+        <span class="tour-tag">含交通</span>
+        <span class="tour-tag">含午餐</span>
+      </div>
+      <div class="tour-name">河內房產考察</div>
+      <div class="tour-desc">聚焦河內核心區域與新興發展區，帶你走訪 3–5 個精選建案，深入了解河內房市最新動態與投資機會。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">Day 1</div>
+      <ul class="tour-itinerary">
+        <li>河內房市趨勢簡報 × 投資方向分析</li>
+        <li>核心區建案考察（2–3 個項目）</li>
+        <li>樣品屋實地參觀 × 格局動線分析</li>
+        <li>周邊生活機能 × 交通建設導覽</li>
+        <li>午餐交流（投資 Q&A）</li>
+      </ul>
+      <div class="tour-day">Day 2</div>
+      <ul class="tour-itinerary">
+        <li>新興發展區建案考察（2 個項目）</li>
+        <li>區域發展規劃介紹</li>
+        <li>租金報酬率 × 增值潛力評估</li>
+        <li>午餐後自由時間或續安排旅遊行程</li>
+      </ul>
+      <div class="tour-highlight">含弘越地產專業顧問全程陪同、建案分析報告、專車接送</div>
+      <div class="tour-price">
+        <div class="price-new">價格待定 <sub>/ 人</sub></div>
+        <div class="price-note">需提前 7 天預約，2 人成行</div>
+      </div>
+      <button class="tour-btn btn-gold" onclick="openModal('河內房產考察 — 兩天')">預約考察</button>
+    </div>
+
+    <!-- 河內+海防考察 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">2 天</span>
+        <span class="tour-tag">含交通</span>
+        <span class="tour-tag">含午餐</span>
+        <span class="tour-tag">跨城市</span>
+      </div>
+      <div class="tour-name">河內 + 海防房產考察</div>
+      <div class="tour-desc">同時考察河內與海防兩大城市，海防作為北越重要港口城市，近年房市快速發展，投資潛力備受關注。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">Day 1 — 河內</div>
+      <ul class="tour-itinerary">
+        <li>河內精選建案考察（2–3 個項目）</li>
+        <li>樣品屋參觀 × 投資分析</li>
+        <li>午餐交流 × 河內市場趨勢簡報</li>
+        <li>下午出發前往海防（車程約 2 小時）</li>
+      </ul>
+      <div class="tour-day">Day 2 — 海防</div>
+      <ul class="tour-itinerary">
+        <li>海防城市發展規劃介紹</li>
+        <li>海防精選建案考察（2–3 個項目）</li>
+        <li>工業區 × 港口經濟帶導覽</li>
+        <li>午餐後返回河內（或續留海防）</li>
+      </ul>
+      <div class="tour-highlight">含弘越地產雙城顧問陪同、兩地建案報告、專車跨城接送</div>
+      <div class="tour-price">
+        <div class="price-new">價格待定 <sub>/ 人</sub></div>
+        <div class="price-note">需提前 7 天預約，2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('河內+海防房產考察 — 兩天')">預約考察</button>
+    </div>
+
+    <!-- 胡志明市考察 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">1–2 天</span>
+        <span class="tour-tag">含交通</span>
+        <span class="tour-tag">含午餐</span>
+      </div>
+      <div class="tour-name">胡志明市優質建案考察</div>
+      <div class="tour-desc">走訪胡志明市核心區與周邊新興開發區的優質建案，實地參觀樣品房，了解周邊交通建設與發展潛力。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">Day 1</div>
+      <ul class="tour-itinerary">
+        <li>胡志明市房市趨勢簡報</li>
+        <li>第一郡 / 第二郡（守添新區）建案考察</li>
+        <li>樣品房實地參觀</li>
+        <li>午餐交流（投資 Q&A）</li>
+        <li>周邊交通建設導覽</li>
+      </ul>
+      <div class="tour-day">Day 2（選配）</div>
+      <ul class="tour-itinerary">
+        <li>平陽工業園區考察</li>
+        <li>工業園區周邊發展帶導覽</li>
+        <li>午餐後自由時間或續安排旅遊行程</li>
+      </ul>
+      <div class="tour-highlight">含弘越地產顧問全程陪同、建案分析報告、市區專車接送</div>
+      <div class="tour-price">
+        <div class="price-new">價格待定 <sub>/ 人</sub></div>
+        <div class="price-note">需提前 7 天預約，2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('胡志明市優質建案考察')">預約考察</button>
+    </div>
+
+  </div>
+
+  <div class="notice" style="margin-top:24px;">
+    <span class="notice-icon">ℹ</span>
+    <div class="notice-text">
+      <strong>考察行程需提前預約。</strong>實際費用依行程內容報價，考察行程可與旅遊行程搭配安排，辦事、看房、旅遊一趟搞定。
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 北越行程 ═══ -->
+<div class="section section-border">
+  <div class="sec-eyebrow">Northern Vietnam</div>
+  <div class="sec-title">北越行程（河內出發）</div>
+  <div class="sec-desc">適合在河內辦理行政事務後，安排 1–2 天的周邊旅遊。</div>
+
+  <div class="tours-grid tours-grid-2">
+
+    <!-- 下龍灣 -->
+    <div class="tour popular">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">2 天 1 夜</span>
+        <span class="tour-tag">含住宿</span>
+        <span class="tour-tag">含三餐</span>
+      </div>
+      <div class="tour-name">下龍灣郵輪之旅</div>
+      <div class="tour-desc">世界自然遺產，搭乘豪華郵輪穿梭於近兩千座石灰岩島嶼之間，船上享用海鮮料理，夜宿海上欣賞星空。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">Day 1</div>
+      <ul class="tour-itinerary">
+        <li>河內出發 → 下龍灣碼頭（車程約 2.5 小時）</li>
+        <li>登船 × 迎賓午餐 × 海上巡航</li>
+        <li>驚訝洞（Sung Sot Cave）探索</li>
+        <li>獨木舟 / 竹筏遊覽漁村</li>
+        <li>甲板日落 × 海鮮晚宴</li>
+      </ul>
+      <div class="tour-day">Day 2</div>
+      <ul class="tour-itinerary">
+        <li>甲板日出 × 太極晨操</li>
+        <li>提托島（Ti Top）登頂觀景</li>
+        <li>船上早午餐 × 退房下船</li>
+        <li>返回河內（約下午 4 點抵達）</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、郵輪住宿、全程餐食、河內來回接送</div>
+      <div class="tour-price">
+        <div class="price-new">USD 189 <sub>/ 人起</sub></div>
+        <div class="price-note">依郵輪等級浮動，2 人成行</div>
+      </div>
+      <button class="tour-btn btn-gold" onclick="openModal('下龍灣兩天一夜郵輪')">預約此行程</button>
+    </div>
+
+    <!-- 寧平 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">1 日遊</span>
+        <span class="tour-tag">含午餐</span>
+      </div>
+      <div class="tour-name">寧平陸龍灣一日遊</div>
+      <div class="tour-desc">被譽為「陸上下龍灣」的寧平，搭乘小木舟穿越喀斯特地形河谷，壯麗山水如詩如畫。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">行程安排</div>
+      <ul class="tour-itinerary">
+        <li>河內出發 → 寧平（車程約 2 小時）</li>
+        <li>長安風景區木舟遊覽（約 2.5 小時）</li>
+        <li>穿越三座天然石灰岩洞穴</li>
+        <li>在地風味午餐（山羊肉料理）</li>
+        <li>華閭古都遺跡參觀</li>
+        <li>Mua Cave 登頂俯瞰全景（500 階）</li>
+        <li>傍晚返回河內</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、午餐、門票、河內來回接送</div>
+      <div class="tour-price">
+        <div class="price-new">USD 65 <sub>/ 人起</sub></div>
+        <div class="price-note">2 人成行，4 人以上另有優惠</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('寧平陸龍灣一日遊')">預約此行程</button>
+    </div>
+
+    <!-- 沙巴 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">2 天 1 夜</span>
+        <span class="tour-tag">含住宿</span>
+        <span class="tour-tag">含三餐</span>
+      </div>
+      <div class="tour-name">沙巴梯田 × 少數民族之旅</div>
+      <div class="tour-desc">前法國殖民避暑勝地，海拔 1,600 公尺的山城，壯闊梯田與多元少數民族文化的交匯之地。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">Day 1</div>
+      <ul class="tour-itinerary">
+        <li>河內出發 → 老街 → 沙巴（車程約 5 小時）</li>
+        <li>貓貓村（Cat Cat Village）苗族文化體驗</li>
+        <li>梯田步道健行（約 2 小時）</li>
+        <li>沙巴小鎮散步 × 在地晚餐</li>
+      </ul>
+      <div class="tour-day">Day 2</div>
+      <ul class="tour-itinerary">
+        <li>番西邦峰纜車（越南最高峰 3,143m）</li>
+        <li>雲海觀景 × 山頂健行</li>
+        <li>午餐後返回河內（約傍晚抵達）</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、住宿、全程餐食、河內來回接送、纜車票</div>
+      <div class="tour-price">
+        <div class="price-new">USD 169 <sub>/ 人起</sub></div>
+        <div class="price-note">依住宿等級浮動，2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('沙巴梯田兩天一夜')">預約此行程</button>
+    </div>
+
+    <!-- 河內市區 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">1 日遊</span>
+        <span class="tour-tag">含午餐</span>
+      </div>
+      <div class="tour-name">河內市區文化一日遊</div>
+      <div class="tour-desc">千年古都深度走訪——法式建築、老街巷弄、水上木偶戲，品嚐最道地的河內美食。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">行程安排</div>
+      <ul class="tour-itinerary">
+        <li>胡志明紀念堂 × 一柱寺</li>
+        <li>文廟（越南最古老大學）</li>
+        <li>還劍湖 × 玉山祠散步</li>
+        <li>河內老街（三十六行街）漫遊</li>
+        <li>在地美食午餐（河粉 / 烤肉米線）</li>
+        <li>西湖周邊法式街區探索</li>
+        <li>傍晚水上木偶戲觀賞</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、午餐、門票、市區接送</div>
+      <div class="tour-price">
+        <div class="price-new">USD 55 <sub>/ 人起</sub></div>
+        <div class="price-note">2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('河內市區文化一日遊')">預約此行程</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 南越行程 ═══ -->
+<div class="section section-border">
+  <div class="sec-eyebrow">Southern Vietnam</div>
+  <div class="sec-title">南越行程（胡志明市出發）</div>
+  <div class="sec-desc">適合在胡志明市辦理行政事務後，安排 1–3 天的周邊旅遊。</div>
+
+  <div class="tours-grid tours-grid-south">
+
+    <!-- 胡志明市區 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">1 日遊</span>
+        <span class="tour-tag">含午餐</span>
+      </div>
+      <div class="tour-name">胡志明市區文化一日遊</div>
+      <div class="tour-desc">東方巴黎的法式風情與越戰歷史交織，走訪經典地標，品嚐南越特色美食。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">行程安排</div>
+      <ul class="tour-itinerary">
+        <li>統一宮（獨立宮）歷史導覽</li>
+        <li>西貢聖母大教堂 × 中央郵局</li>
+        <li>戰爭遺跡博物館</li>
+        <li>在地午餐（越南河粉 / 碎米飯）</li>
+        <li>濱城市場逛街購物</li>
+        <li>咖啡公寓 × 西貢河畔漫步</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、午餐、門票、市區接送</div>
+      <div class="tour-price">
+        <div class="price-new">USD 49 <sub>/ 人起</sub></div>
+        <div class="price-note">2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('胡志明市區文化一日遊')">預約此行程</button>
+    </div>
+
+    <!-- 古芝地道 -->
+    <div class="tour popular">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">1 日遊</span>
+        <span class="tour-tag">含午餐</span>
+      </div>
+      <div class="tour-name">古芝地道歷史一日遊</div>
+      <div class="tour-desc">親身走進越戰時期的地下城，三層地道構造含醫務室、廚房、會議室，體驗歷史的震撼。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">行程安排</div>
+      <ul class="tour-itinerary">
+        <li>胡志明市出發 → 古芝（車程約 1.5 小時）</li>
+        <li>越戰歷史影片導覽</li>
+        <li>實際進入地下隧道體驗</li>
+        <li>越戰時期陷阱與防禦設施展示</li>
+        <li>在地午餐（木薯 / 越式料理）</li>
+        <li>周邊果園或手工藝村參觀</li>
+        <li>下午返回胡志明市</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、午餐、門票、來回接送</div>
+      <div class="tour-price">
+        <div class="price-new">USD 55 <sub>/ 人起</sub></div>
+        <div class="price-note">2 人成行</div>
+      </div>
+      <button class="tour-btn btn-gold" onclick="openModal('古芝地道歷史一日遊')">預約此行程</button>
+    </div>
+
+    <!-- 湄公河 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">1 日遊</span>
+        <span class="tour-tag">含午餐</span>
+      </div>
+      <div class="tour-name">湄公河（美托）一日遊</div>
+      <div class="tour-desc">乘船遊覽湄公河三角洲，探訪椰子糖工坊、水果島、蜂蜜農場，體驗南越水鄉風情。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">行程安排</div>
+      <ul class="tour-itinerary">
+        <li>胡志明市出發 → 美托（車程約 1.5 小時）</li>
+        <li>湄公河遊船巡航</li>
+        <li>椰子糖工坊參觀 × 品嚐</li>
+        <li>水果島午餐 × 熱帶水果品嚐</li>
+        <li>竹筏穿越椰林水道</li>
+        <li>蜂蜜茶品嚐 × 傳統音樂演奏</li>
+        <li>下午返回胡志明市</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、午餐、船票、來回接送</div>
+      <div class="tour-price">
+        <div class="price-new">USD 49 <sub>/ 人起</sub></div>
+        <div class="price-note">2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('湄公河（美托）一日遊')">預約此行程</button>
+    </div>
+
+    <!-- 頭頓 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">2 天 1 夜</span>
+        <span class="tour-tag">含住宿</span>
+        <span class="tour-tag">含三餐</span>
+      </div>
+      <div class="tour-name">頭頓海濱度假之旅</div>
+      <div class="tour-desc">胡志明市後花園，三面環海的度假勝地。登上亞洲最大基督像，享受悠閒海濱時光。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">Day 1</div>
+      <ul class="tour-itinerary">
+        <li>胡志明市出發 → 頭頓（車程約 2 小時）</li>
+        <li>前灘（Front Beach）海濱散步</li>
+        <li>海鮮午餐</li>
+        <li>耶穌山基督像（811 階登頂）</li>
+        <li>燈塔觀景 × 日落</li>
+        <li>海鮮晚宴 × 入住海景飯店</li>
+      </ul>
+      <div class="tour-day">Day 2</div>
+      <ul class="tour-itinerary">
+        <li>後灘（Back Beach）海邊早餐</li>
+        <li>白宮（Villa Blanche）法式建築參觀</li>
+        <li>海鮮市場自由採購</li>
+        <li>午後返回胡志明市</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、海景住宿、全程餐食、來回接送</div>
+      <div class="tour-price">
+        <div class="price-new">USD 139 <sub>/ 人起</sub></div>
+        <div class="price-note">依飯店等級浮動，2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('頭頓海濱兩天一夜')">預約此行程</button>
+    </div>
+
+    <!-- 美奈 -->
+    <div class="tour">
+      <div class="tour-tags">
+        <span class="tour-tag tour-tag-gold">2 天 1 夜</span>
+        <span class="tour-tag">含住宿</span>
+        <span class="tour-tag">含三餐</span>
+      </div>
+      <div class="tour-name">美奈沙丘 × 漁村之旅</div>
+      <div class="tour-desc">越南最獨特的沙漠海岸地貌——紅白沙丘、仙女溪、漁村，感受截然不同的越南面貌。</div>
+      <div class="tour-divider"></div>
+      <div class="tour-day">Day 1</div>
+      <ul class="tour-itinerary">
+        <li>胡志明市出發 → 美奈（車程約 4 小時）</li>
+        <li>仙女溪（Fairy Stream）赤腳漫步</li>
+        <li>美奈漁村 × 圓籃船拍照</li>
+        <li>海鮮晚餐 × 入住度假村</li>
+      </ul>
+      <div class="tour-day">Day 2</div>
+      <ul class="tour-itinerary">
+        <li>清晨白沙丘日出 × 沙地吉普車</li>
+        <li>紅沙丘滑沙體驗</li>
+        <li>度假村早午餐 × 海邊放鬆</li>
+        <li>午後返回胡志明市</li>
+      </ul>
+      <div class="tour-highlight">含中文導遊、度假村住宿、全程餐食、來回接送、吉普車</div>
+      <div class="tour-price">
+        <div class="price-new">USD 159 <sub>/ 人起</sub></div>
+        <div class="price-note">依住宿等級浮動，2 人成行</div>
+      </div>
+      <button class="tour-btn btn-outline" onclick="openModal('美奈沙丘兩天一夜')">預約此行程</button>
+    </div>
+
+  </div>
+
+  <div class="notice" style="margin-top:24px;">
+    <span class="notice-icon">ℹ</span>
+    <div class="notice-text">
+      <strong>搭配行政辦理更划算：</strong>在辦理粉紅簿、交屋驗收或合約簽署時，同步預訂旅遊行程，即可享有 <strong>9 折優惠</strong>。請在預約時告知行政辦理項目，我們將為您統一安排時程。
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-header">
+      <div class="sec-eyebrow">Reservation</div>
+      <div class="modal-title" id="modal-title">預約行程</div>
+    </div>
+    <form class="modal-form" onsubmit="handleSubmit(event)">
+      <div class="form-group"><label>出發日期</label><input type="date" required /></div>
+      <div class="form-group"><label>人數</label><select><option>1 人</option><option>2 人</option><option>3 人</option><option>4 人</option><option>5 人以上（請備註）</option></select></div>
+      <div class="form-group"><label>姓名</label><input type="text" placeholder="請輸入您的姓名" required /></div>
+      <div class="form-group"><label>Line ID</label><input type="text" placeholder="請輸入您的 Line ID" /></div>
+      <div class="form-group"><label>微信 WeChat</label><input type="text" placeholder="請輸入您的微信號" /></div>
+      <div class="form-group"><label>手機號碼</label><input type="tel" placeholder="+886 / +84 / +1" required /></div>
+      <div class="form-group"><label>是否搭配行政辦理？</label><select><option value="">僅旅遊行程</option><option>搭配粉紅簿辦理</option><option>搭配買賣合約簽署</option><option>搭配交屋驗收</option><option>搭配銀行 × 證券開戶</option><option>其他（請備註）</option></select></div>
+      <div class="form-group"><label>備註（選填）</label><textarea rows="3" placeholder="特殊需求、飲食限制、同行人數等"></textarea></div>
+      <button type="submit" class="tour-btn btn-gold" style="width:100%">確認送出預約</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand">弘越心選<span>HONG YUE XIN XUAN</span></div>
+      <p>弘越地產官方合作平臺<br />深耕越南八年，一站式服務</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">服務項目</div>
+      <a href="apply.html">越南電子簽證</a>
+      <a href="fasttrack.html">機場快速通關</a>
+      <a href="admin.html">行政辦理服務</a>
+      <a href="travel.html">旅遊配套行程</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">聯絡我們</div>
+      <a href="#">LINE 官方帳號</a>
+      <a href="#">WeChat: yuexin_vn</a>
+      <a href="#">Email: info@yuexin.vn</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">相關連結</div>
+      <a href="#">弘越地產官網 ↗</a>
+      <a href="#">服務條款</a>
+      <a href="#">隱私政策</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 弘越心選 弘越心選 · 讓你安心置產，看見越南</div>
+</footer>
+
+<script>
+function openModal(s){document.getElementById('modal-title').textContent='預約 — '+s;document.getElementById('modal-overlay').classList.add('open');document.body.style.overflow='hidden';var f=document.querySelector('.modal-form');if(f){f.reset();f.style.display='flex'}var x=document.querySelector('.modal-success');if(x)x.remove()}
+function closeModal(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow=''}
+function handleSubmit(e){e.preventDefault();var f=e.target,m=f.closest('.modal');f.style.display='none';var s=document.createElement('div');s.className='modal-success';s.innerHTML='<div class="check-icon">✓</div><div class="msg">預約已送出</div><div class="sub">感謝您的預約，我們的專員將於 24 小時內與您聯繫，<br />協助您安排最佳行程。</div>';m.appendChild(s)}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()})
+</script>
+</body>
+</html>

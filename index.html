@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>弘越心選 — 來越南一次，把所有事辦好</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --cream:#FFFDEB;--sand:#E8DBB3;--blue:#7DAACB;--blue2:#6494B5;--blue-dim:rgba(125,170,203,.10);
+      --red:#CE2626;--red2:#B01E1E;
+      --text:#2C2C2C;--muted:#7A7A72;--white:#fff;
+      --border:rgba(125,170,203,.25);--border-light:rgba(125,170,203,.12);
+      --serif:'Noto Serif TC',serif;--sans:'Noto Sans TC',sans-serif;
+      --radius:10px;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--cream);color:var(--text);font-family:var(--sans);min-height:100vh;font-size:17px}
+    a{text-decoration:none}
+
+    /* ═══ NAV ═══ */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(255,253,235,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light)}
+    .nav-left{display:flex;align-items:center;gap:16px}
+    .nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:900;color:var(--blue);letter-spacing:.04em}
+    .nav-sub{font-size:.68rem;color:var(--muted);letter-spacing:.06em;border-left:1px solid var(--border);padding-left:12px;font-weight:300}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:var(--muted);font-size:.84rem;font-weight:400;transition:color .2s}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-cta{background:var(--red);color:#fff;font-weight:700;border:none;padding:9px 22px;border-radius:6px;cursor:pointer;font-size:.84rem;transition:background .2s}
+    .nav-cta:hover{background:var(--red2)}
+
+    /* ═══ HERO ═══ */
+    .hero{padding:88px 48px 72px;background:linear-gradient(145deg,var(--cream) 40%,rgba(125,170,203,.1) 100%);position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(125,170,203,.12),transparent 70%);pointer-events:none}
+    .hero-inner{max-width:660px;position:relative;z-index:1}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:var(--blue-dim);border:1px solid var(--border-light);border-radius:100px;font-size:.74rem;color:var(--blue);font-weight:500;letter-spacing:.05em;margin-bottom:24px}
+    .hero-badge::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%}
+    .hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:900;line-height:1.3;margin-bottom:16px}
+    .hero h1 em{color:var(--red);font-style:normal}
+    .hero-sub{font-size:1.05rem;color:var(--muted);font-weight:300;line-height:1.9;margin-bottom:8px}
+    .hero-sub strong{color:var(--text);font-weight:500}
+    .hero-note{font-size:.85rem;color:var(--blue);font-weight:400;margin-bottom:36px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.03em;cursor:pointer;transition:all .25s;border:none;border-radius:var(--radius)}
+    .btn-red{background:var(--red);color:#fff}.btn-red:hover{background:var(--red2);transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border)}.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+
+    /* ═══ QUICK ENTRY ═══ */
+    .quick{padding:64px 48px;text-align:center}
+    .quick-title{font-family:var(--serif);font-size:1.75rem;font-weight:700;margin-bottom:32px}
+    .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:900px;margin:0 auto}
+    .quick-card{background:var(--white);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:28px 20px;cursor:pointer;transition:all .3s;text-align:center}
+    .quick-card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 8px 24px rgba(125,170,203,.12)}
+    .quick-card.active{border-color:var(--red);background:rgba(206,38,38,.03)}
+    .quick-icon{font-size:2rem;margin-bottom:12px}
+    .quick-label{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin-bottom:6px}
+    .quick-desc{font-size:.9rem;color:var(--muted);font-weight:300;line-height:1.6}
+
+    /* ═══ SECTION COMMON ═══ */
+    .section{max-width:1100px;margin:0 auto;padding:72px 48px}
+    .sec-eyebrow{font-size:.7rem;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+    .sec-title{font-family:var(--serif);font-size:1.7rem;font-weight:700;margin-bottom:10px;line-height:1.4}
+    .sec-desc{color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.9;margin-bottom:36px;max-width:580px}
+    .sec-center{text-align:center}.sec-center .sec-desc{margin-left:auto;margin-right:auto}
+    .divider{border:none;border-top:1px solid var(--border-light);margin:0}
+
+    /* ═══ SERVICE MODULE ═══ */
+    .svc-tabs{display:flex;gap:0;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:36px;max-width:700px;margin-left:auto;margin-right:auto}
+    .svc-tab{flex:1;padding:16px 14px;text-align:center;font-size:1rem;font-weight:500;cursor:pointer;transition:all .25s;background:var(--white);color:var(--muted);border-right:1px solid var(--border-light)}
+    .svc-tab:last-child{border-right:none}
+    .svc-tab:hover{color:var(--blue)}
+    .svc-tab.active{background:var(--blue);color:#fff;font-weight:700}
+    .svc-panel{display:none}.svc-panel.active{display:block}
+
+    /* cards grid */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--white);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:28px 22px;transition:all .3s;display:flex;flex-direction:column;gap:10px}
+    .card:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(125,170,203,.1)}
+    .card-icon{font-size:1.6rem}
+    .card-title{font-family:var(--serif);font-size:1.05rem;font-weight:700}
+    .card-desc{font-size:.84rem;color:var(--muted);font-weight:300;line-height:1.8;flex:1}
+    .card-price{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--red)}
+    .card-price sub{font-family:var(--sans);font-size:.7rem;color:var(--muted);font-weight:300;vertical-align:baseline}
+    .card-note{font-size:.76rem;color:var(--blue);font-weight:400;background:var(--blue-dim);padding:8px 12px;border-radius:6px;line-height:1.5}
+    .card-btn{display:block;width:100%;padding:11px;border:none;border-radius:6px;font-family:var(--sans);font-size:.84rem;font-weight:700;cursor:pointer;transition:all .2s;text-align:center;margin-top:auto}
+    .card-btn-red,.card-btn-outline{background:var(--blue);color:#fff;border:none}.card-btn-red:hover,.card-btn-outline:hover{background:var(--blue2)}
+
+    /* detail panel (expand on click) */
+    .detail-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);justify-content:center;align-items:flex-start;padding:48px 24px;overflow-y:auto}
+    .detail-overlay.open{display:flex}
+    .detail-box{background:var(--white);border:1.5px solid var(--border);border-radius:14px;width:100%;max-width:860px;padding:36px 32px;position:relative}
+    .detail-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.5rem;color:var(--muted);cursor:pointer;transition:color .2s;line-height:1}
+    .detail-close:hover{color:var(--text)}
+    .detail-header{margin-bottom:24px}
+    .detail-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:6px}
+    .detail-desc{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.7}
+
+    /* addon expandable items */
+    .addon-item{border:1.5px solid var(--border-light);border-radius:8px;overflow:hidden;transition:border-color .2s}
+    .addon-item.open{border-color:var(--blue)}
+    .addon-header{padding:14px 16px;cursor:pointer;transition:background .2s}
+    .addon-header:hover{background:rgba(125,170,203,.05)}
+    .addon-detail{display:none;border-top:1px solid var(--border-light);background:var(--cream)}
+    .addon-item.open .addon-detail{display:block}
+    .addon-sub{padding:12px 20px;font-size:.88rem;cursor:pointer;transition:all .15s;border-bottom:1px solid var(--border-light);color:var(--muted);display:flex;align-items:center;gap:8px}
+    .addon-sub:last-child{border-bottom:none}
+    .addon-sub:hover{background:rgba(125,170,203,.08);color:var(--text)}
+    .addon-sub.selected{background:rgba(125,170,203,.12);color:var(--blue);font-weight:600}
+    .addon-sub::before{content:'○';color:var(--border);font-size:.7rem}
+    .addon-sub.selected::before{content:'●';color:var(--blue)}
+    .addon-badge{display:inline-block;margin-left:auto;font-size:.7rem;background:var(--blue);color:#fff;padding:2px 8px;border-radius:4px;font-weight:600}
+
+    /* visa steps */
+    .visa-step{display:none}.visa-step.active{display:block}
+    /* visa form */
+    .vf-group{margin-bottom:18px}
+    .vf-label{display:block;font-size:.82rem;font-weight:500;color:var(--blue);margin-bottom:6px;letter-spacing:.03em}
+    .vf-input,.vf-select{width:100%;background:var(--cream);border:1.5px solid var(--border-light);color:var(--text);font-family:var(--sans);font-size:.9rem;padding:11px 14px;border-radius:8px;outline:none;transition:all .2s;box-sizing:border-box}
+    .vf-input:focus,.vf-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(125,170,203,.12)}
+    .vf-select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237DAACB' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+    .vf-toggle{display:flex;gap:0;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+    .vf-tog{flex:1;padding:10px 12px;text-align:center;font-size:.88rem;font-weight:500;cursor:pointer;background:var(--white);color:var(--muted);border:none;border-right:1px solid var(--border-light);transition:all .2s;font-family:var(--sans)}
+    .vf-tog:last-child{border-right:none}
+    .vf-tog.active{background:var(--blue);color:#fff;font-weight:700}
+    .vf-days{padding:10px 14px;background:var(--cream);border-radius:8px;font-size:.9rem;color:var(--muted)}
+    .vf-options{display:flex;gap:10px}
+    .vf-option{flex:1;display:flex;align-items:center;gap:10px;padding:14px 14px;border:1.5px solid var(--border-light);border-radius:8px;cursor:pointer;transition:all .2s;background:var(--white)}
+    .vf-option:hover{border-color:var(--blue)}
+    .vf-option.active{border-color:var(--blue);background:rgba(125,170,203,.08)}
+    .vf-option input{display:none}
+    .vf-option-title{font-size:.9rem;font-weight:700;margin-bottom:2px}
+    .vf-option-meta{font-size:.75rem;color:var(--muted);font-weight:300}
+    .vf-speeds{display:flex;flex-wrap:wrap;gap:8px}
+    .vf-speed{display:flex;flex-direction:column;align-items:center;padding:10px 12px;border:1.5px solid var(--border-light);border-radius:8px;cursor:pointer;transition:all .2s;background:var(--white);min-width:80px;text-align:center;flex:1}
+    .vf-speed:hover{border-color:var(--blue)}
+    .vf-speed.active{border-color:var(--blue);background:rgba(125,170,203,.08)}
+    .vf-speed input{display:none}
+    .vf-speed-name{font-size:.82rem;font-weight:600;margin-bottom:2px}
+    .vf-speed-meta{font-size:.68rem;color:var(--muted);font-weight:300;line-height:1.4}
+    .vf-summary{background:var(--cream);border:1.5px solid var(--border-light);border-radius:10px;padding:16px 18px;margin-top:24px}
+    .vf-summary-row{display:flex;justify-content:space-between;font-size:.88rem;padding:6px 0;color:var(--muted)}
+    .vf-summary-total{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:900;font-family:var(--serif);color:var(--red);padding:10px 0 4px;border-top:1.5px solid var(--border-light);margin-top:8px}
+
+    /* upload */
+    .vf-upload{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;border:2px dashed var(--border);border-radius:10px;cursor:pointer;transition:all .2s;background:var(--cream);text-align:center}
+    .vf-upload:hover{border-color:var(--blue);background:rgba(125,170,203,.06)}
+    .vf-upload-icon{font-size:2rem;margin-bottom:8px}
+    .vf-upload-text{font-size:.9rem;font-weight:500;color:var(--text);margin-bottom:4px}
+    .vf-upload-hint{font-size:.75rem;color:var(--muted);font-weight:300}
+    .vf-upload-preview{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(125,170,203,.08);border:1.5px solid var(--blue);border-radius:8px;margin-top:8px;font-size:.85rem;color:var(--blue);font-weight:500}
+
+    /* 2-col layout for 考察 */
+    .tour-region{margin-bottom:28px}
+    .tour-region-title{font-size:.78rem;font-weight:700;color:var(--blue);letter-spacing:.1em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-light)}
+    .tour-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    /* ═══ TRAVEL MODULE ═══ */
+    .travel-bg{background:var(--sand)}
+    .travel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+    .travel-card{background:var(--white);border:1.5px solid var(--border-light);border-radius:var(--radius);overflow:hidden;transition:all .3s}
+    .travel-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .travel-img{height:220px;background-size:cover;background-position:center}
+    .travel-body{padding:20px}
+    .travel-tag{font-size:.68rem;font-weight:600;color:var(--blue);letter-spacing:.08em;margin-bottom:6px}
+    .travel-name{font-family:var(--serif);font-size:1.05rem;font-weight:700;margin-bottom:6px}
+    .travel-desc{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.7}
+
+    /* ═══ STEP FORM ═══ */
+    .form-section{background:linear-gradient(180deg,var(--cream),rgba(125,170,203,.06))}
+    .step-bar{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px}
+    .step-item{display:flex;align-items:center;gap:0}
+    .step-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:.9rem;transition:all .3s;flex-shrink:0}
+    .step-circle.done{background:var(--blue);color:#fff}
+    .step-circle.current{background:var(--red);color:#fff}
+    .step-circle.pending{background:var(--white);color:var(--muted);border:1.5px solid var(--border)}
+    .step-line{width:48px;height:2px;background:var(--border-light);margin:0 6px}
+    .step-line.done{background:var(--blue)}
+    .form-card{max-width:580px;margin:0 auto;background:var(--white);border:1.5px solid var(--border-light);border-radius:14px;padding:32px 28px;box-shadow:0 8px 32px rgba(0,0,0,.03);overflow:hidden}
+    .form-step{display:none}.form-step.active{display:block}
+    .form-step-title{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin-bottom:20px}
+    .form-options{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+    .form-opt{padding:14px 16px;border:1.5px solid var(--border-light);border-radius:8px;cursor:pointer;transition:all .2s;font-size:.9rem;font-weight:400;display:flex;align-items:center;gap:12px}
+    .form-opt:hover{border-color:var(--blue);background:var(--blue-dim)}
+    .form-opt.selected{border-color:var(--red);background:rgba(206,38,38,.04);font-weight:600}
+    .form-opt-icon{font-size:1.2rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;width:100%;min-width:0}
+    .form-group{display:flex;flex-direction:column;gap:5px}
+    .form-group.full{grid-column:1/-1}
+    .form-group label{font-size:.78rem;font-weight:500;color:var(--blue);letter-spacing:.03em}
+    .form-group{min-width:0}
+    .form-group input,.form-group textarea,.form-group select{background:var(--cream);border:1.5px solid var(--border-light);color:var(--text);font-family:var(--sans);font-size:.88rem;padding:11px 13px;border-radius:8px;outline:none;transition:all .2s;font-weight:300;width:100%;min-width:0;box-sizing:border-box}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);opacity:.5}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(125,170,203,.1)}
+    .form-group textarea{resize:vertical}
+    .form-nav{display:flex;gap:12px;margin-top:20px}
+    .form-prev{flex:1;padding:12px;border:1.5px solid var(--border);border-radius:8px;background:transparent;color:var(--muted);font-family:var(--sans);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s}
+    .form-prev:hover{border-color:var(--blue);color:var(--blue)}
+    .form-next,.form-submit{flex:2;padding:12px;border:none;border-radius:8px;background:var(--red);color:#fff;font-family:var(--sans);font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s}
+    .form-next:hover,.form-submit:hover{background:var(--red2)}
+    .form-next:disabled{background:var(--border);cursor:not-allowed}
+    .summary{background:var(--cream);border:1px solid var(--border-light);border-radius:8px;padding:18px;margin-bottom:16px}
+    .summary-row{display:flex;justify-content:space-between;padding:6px 0;font-size:.85rem;border-bottom:1px solid var(--border-light)}
+    .summary-row:last-child{border-bottom:none}
+    .summary-label{color:var(--muted);font-weight:300}
+    .summary-value{font-weight:600;color:var(--text)}
+    .form-success{text-align:center;padding:40px 20px;display:none}
+    .form-success .icon{font-size:3.5rem;margin-bottom:14px;color:var(--blue)}
+    .form-success .msg{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-bottom:10px}
+    .form-success .sub{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.8}
+
+    /* ═══ FOOTER ═══ */
+    footer{background:var(--text);color:rgba(255,255,255,.65);padding:52px 48px 28px}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+    .footer-brand{font-family:var(--serif);font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:8px}
+    .footer-brand span{display:block;font-family:var(--sans);font-size:.65rem;color:var(--blue);font-weight:400;letter-spacing:.08em;margin-top:5px}
+    .footer-col p{font-size:.8rem;line-height:1.7;margin-bottom:4px}
+    .footer-col-title{font-size:.68rem;font-weight:700;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+    .footer-col a{display:block;color:rgba(255,255,255,.45);font-size:.8rem;font-weight:300;margin-bottom:9px;transition:color .2s}
+    .footer-col a:hover{color:var(--blue)}
+    .footer-compliance{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;margin-top:8px}
+    .footer-compliance p{font-size:.72rem;color:rgba(255,255,255,.3);font-weight:300;line-height:1.8;max-width:700px}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-size:.7rem;color:rgba(255,255,255,.25)}
+
+    /* ═══ RESPONSIVE ═══ */
+    @media(max-width:900px){
+      .quick-grid{grid-template-columns:1fr 1fr}
+      .cards{grid-template-columns:1fr 1fr}
+      .tour-cards{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+    }
+    @media(max-width:680px){
+      nav{padding:0 20px;height:56px}.nav-links{display:none}.nav-logo{font-size:1.2rem}
+      .hero{padding:56px 20px 48px}
+      .quick{padding:40px 20px}.quick-grid{grid-template-columns:1fr 1fr;gap:10px}
+      .section{padding:48px 20px}
+      .svc-tabs{flex-wrap:wrap}.svc-tab{min-width:0;font-size:.78rem;padding:10px 8px}
+      .cards{grid-template-columns:1fr}
+      .travel-grid{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}.form-group.full{grid-column:1}
+      .step-bar{flex-wrap:wrap;gap:4px}
+      .footer-grid{grid-template-columns:1fr;gap:20px}
+      footer{padding:36px 20px 20px}
+      .footer-bottom{flex-direction:column;gap:6px;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-left">
+    <a class="nav-logo" href="#"><span style="color:var(--red)">弘</span><span style="color:var(--text)">越</span><span style="color:var(--red)">心</span><span style="color:var(--text)">選</span></a>
+    <span class="nav-sub">越南在地一站式服務</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">服務項目</a>
+    <a href="#travel">旅遊行程</a>
+    <a href="#contact">聯繫我們</a>
+    <a class="nav-cta" href="#contact">立即規劃行程</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">弘越地產 官方合作平臺</div>
+    <h1>來越南一次<br /><em>把所有事辦好</em></h1>
+    <div class="hero-sub">
+      <strong>簽約、交屋、開戶、考察、行程安排</strong>，一站式幫你處理好
+    </div>
+    <div class="hero-note">專為台灣 / 香港 / 中國投資客設計，全程中文協助</div>
+    <div class="hero-btns">
+      <a class="btn btn-red" href="#contact">立即規劃我的越南行程 →</a>
+      <a class="btn btn-outline" href="#services">查看服務內容</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUICK ENTRY ═══ -->
+<section class="quick">
+  <div class="quick-title">你這次來越南，是要做什麼？</div>
+  <div class="quick-grid">
+    <div class="quick-card" onclick="scrollToService('admin')">
+      <div class="quick-icon">📋</div>
+      <div class="quick-label">辦交屋 / 簽約</div>
+      <div class="quick-desc">合約簽署、交屋驗收、粉紅簿辦理</div>
+    </div>
+    <div class="quick-card" onclick="scrollToService('finance')">
+      <div class="quick-icon">🏦</div>
+      <div class="quick-label">開銀行 / 股票帳戶</div>
+      <div class="quick-desc">越南銀行開戶、證券開戶，全程中文陪同</div>
+    </div>
+    <div class="quick-card" onclick="scrollToService('tour')">
+      <div class="quick-icon">🏗️</div>
+      <div class="quick-label">房地產考察</div>
+      <div class="quick-desc">北越 / 南越建案實地考察與投資分析</div>
+    </div>
+    <div class="quick-card" onclick="scrollToService('travel')">
+      <div class="quick-icon">🌴</div>
+      <div class="quick-label">安排旅遊行程</div>
+      <div class="quick-desc">下龍灣、胡志明市、富國島等經典路線</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══ SERVICE MODULE ═══ -->
+<div class="section sec-center" id="services">
+  <div class="sec-eyebrow">Services</div>
+  <div class="sec-title">服務項目</div>
+  <div class="sec-desc">從行政辦理、金融開戶到房產考察、機場接送，所有你在越南需要的服務，我們都幫你安排好。</div>
+
+  <div class="svc-tabs">
+    <div class="svc-tab active" onclick="switchSvc('admin',this)">行政服務</div>
+    <div class="svc-tab" onclick="switchSvc('finance',this)">金融服務</div>
+    <div class="svc-tab" onclick="switchSvc('tour',this)">房地產考察</div>
+    <div class="svc-tab" onclick="switchSvc('car',this)">包車接送</div>
+  </div>
+
+  <!-- 行政服務 -->
+  <div id="panel-admin" class="svc-panel active">
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🗂️</div>
+        <div class="card-title">簽證辦理</div>
+        <div class="card-desc">電子簽證 / 落地簽證 / 加急簽證，專人審件把關，最快當日核發，不通過全額退費。</div>
+        <div class="card-price">NT$1,268 起 <sub>≈ USD 39 / 人</sub></div>
+        <button class="card-btn card-btn-red" onclick="openDetail('visa')">查看方案 →</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">✈️</div>
+        <div class="card-title">快速通關</div>
+        <div class="card-desc">中文專員機場接待，走獨立快速通道，省下 30–60 分鐘排隊等候。</div>
+        <button class="card-btn card-btn-outline" onclick="openServiceBooking('fasttrack')">了解更多</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <div class="card-title">合約簽署</div>
+        <div class="card-desc">買賣合約中文翻譯解說，專人陪同簽署，後續付款時程提醒。</div>
+        <button class="card-btn card-btn-outline" onclick="openServiceBooking('contract')">了解更多</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <div class="card-title">房產交屋</div>
+        <div class="card-desc">委託驗屋、缺失清單建商交涉，48 小時內提供完整圖文驗收報告。</div>
+        <button class="card-btn card-btn-outline" onclick="openServiceBooking('handover')">了解更多</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <div class="card-title">粉紅簿辦理</div>
+        <div class="card-desc">房產證（粉紅簿）全程代辦，文件翻譯、公證、送件、進度追蹤。</div>
+        <button class="card-btn card-btn-outline" onclick="openServiceBooking('pinkbook')">了解更多</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <div class="card-title">客製服務</div>
+        <div class="card-desc">其他行政需求？告訴我們你的情況，專人為你量身規劃。</div>
+        <button class="card-btn card-btn-red" onclick="goForm('客製服務')">免費諮詢</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 金融服務 -->
+  <div id="panel-finance" class="svc-panel">
+    <div class="cards" style="grid-template-columns:1fr 1fr;max-width:700px;margin:0 auto">
+      <div class="card">
+        <div class="card-icon">🏦</div>
+        <div class="card-title">越南銀行開戶</div>
+        <div class="card-desc">購房匯款與收租必備。中文專人陪同至銀行辦理，約 1–2 小時完成。</div>
+        <div class="card-note">中文全程協助 · 專人陪同</div>
+        <div class="card-price">USD 50 <sub>/ 人</sub></div>
+        <button class="card-btn card-btn-red" onclick="goForm('越南銀行開戶')">立即預約</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <div class="card-title">越南證券開戶</div>
+        <div class="card-desc">投資越南股市必備。中文專人陪同至券商辦理，約 1 小時完成，可與銀行同日辦理。</div>
+        <div class="card-note">中文全程協助 · 專人陪同</div>
+        <div class="card-price">USD 200 <sub>/ 人</sub></div>
+        <button class="card-btn card-btn-red" onclick="goForm('越南證券開戶')">立即預約</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 房地產考察 -->
+  <div id="panel-tour" class="svc-panel">
+    <div style="max-width:800px;margin:0 auto;text-align:left">
+      <div class="tour-region">
+        <div class="tour-region-title">北越</div>
+        <div class="tour-cards">
+          <div class="card">
+            <div class="card-icon">🏗️</div>
+            <div class="card-title">河內核心經濟圈建案考察</div>
+            <div class="card-desc">涵蓋河內 / 北寧 / 北江，外資工業區、成長型區域，帶你實地了解投資潛力。</div>
+            <button class="card-btn card-btn-red" onclick="goForm('河內核心經濟圈考察')">預約考察</button>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚓</div>
+            <div class="card-title">海防港市發展潛力考察</div>
+            <div class="card-desc">港口經濟、物流與未來發展，深入了解海防的投資機會。</div>
+            <button class="card-btn card-btn-red" onclick="goForm('海防港市考察')">預約考察</button>
+          </div>
+        </div>
+      </div>
+      <div class="tour-region">
+        <div class="tour-region-title">南越</div>
+        <div class="tour-cards">
+          <div class="card">
+            <div class="card-icon">🏙️</div>
+            <div class="card-title">胡志明核心都會圈建案考察</div>
+            <div class="card-desc">涵蓋胡志明 / 平陽，人口紅利、都市擴張、台商聚集，南越投資首選。</div>
+            <button class="card-btn card-btn-red" onclick="goForm('胡志明都會圈考察')">預約考察</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 包車接送 -->
+  <div id="panel-car" class="svc-panel">
+    <div class="cards" style="grid-template-columns:1fr 1fr;max-width:700px;margin:0 auto">
+      <div class="card">
+        <div class="card-icon">🚗</div>
+        <div class="card-title">機場接送</div>
+        <div class="card-desc">中文司機機場迎接，安全舒適直達目的地。支援河內與胡志明市機場。</div>
+        <button class="card-btn card-btn-red" onclick="goForm('機場接送')">立即預約</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <div class="card-title">市區包車</div>
+        <div class="card-desc">半日 / 一日包車，建案考察、行政辦理、市區觀光都適用。中文司機全程服務。</div>
+        <div class="card-note">僅限胡志明市與河內市，不提供跨城市服務</div>
+        <button class="card-btn card-btn-red" onclick="goForm('市區包車')">立即預約</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ═══ TRAVEL MODULE ═══ -->
+<div class="travel-bg" id="travel">
+  <div class="section">
+    <div class="sec-center">
+      <div class="sec-eyebrow">Travel</div>
+      <div class="sec-title">旅遊配套行程</div>
+      <div class="sec-desc">來越南不只辦事，也值得好好體驗。可搭配考察或行政行程一起安排。</div>
+    </div>
+    <div class="travel-grid">
+      <div class="travel-card">
+        <div class="travel-img" style="background-image:url('https://images.unsplash.com/photo-1528127269322-539801943592?w=600&q=80')"></div>
+        <div class="travel-body">
+          <div class="travel-tag">北越</div>
+          <div class="travel-name">下龍灣</div>
+          <div class="travel-desc">世界遺產，郵輪行程，壯麗海灣風光。</div>
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-img" style="background-image:url('https://images.unsplash.com/photo-1583417267826-aebc4d1542e1?w=600&q=80')"></div>
+        <div class="travel-body">
+          <div class="travel-tag">北越</div>
+          <div class="travel-name">河內文化行程</div>
+          <div class="travel-desc">古街漫步、在地美食、千年歷史文化體驗。</div>
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-img" style="background-image:url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=80')"></div>
+        <div class="travel-body">
+          <div class="travel-tag">南越</div>
+          <div class="travel-name">胡志明市</div>
+          <div class="travel-desc">法式建築、戰爭博物館、咖啡文化與夜生活。</div>
+        </div>
+      </div>
+      <div class="travel-card" style="cursor:pointer" onclick="openServiceBooking('travel-custom')">
+        <div class="travel-img" style="background:linear-gradient(135deg,rgba(125,170,203,.15),rgba(232,219,179,.3));display:flex;align-items:center;justify-content:center;font-size:2.5rem">✨</div>
+        <div class="travel-body">
+          <div class="travel-tag">客製化</div>
+          <div class="travel-name">依照你的需求客製化旅遊行程</div>
+          <div class="travel-desc">告訴我們你的興趣與時間，專人為你量身規劃最適合的越南旅遊體驗。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VISA DETAIL OVERLAY ═══ -->
+<div class="detail-overlay" id="detail-visa" onclick="closeDetail(event)">
+  <div class="detail-box" onclick="event.stopPropagation()" style="max-width:540px">
+    <button class="detail-close" onclick="closeDetail()">&times;</button>
+
+    <!-- Visa Step Bar -->
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:.78rem;color:var(--muted)">🗂️ 簽證申請</div>
+    <div class="step-bar" id="visaStepBar" style="margin-bottom:24px;justify-content:flex-start">
+      <div class="step-item"><div class="step-circle current" id="vs1">1</div></div>
+      <div class="step-line" id="vl1" style="width:36px"></div>
+      <div class="step-item"><div class="step-circle pending" id="vs2">2</div></div>
+      <div class="step-line" id="vl2" style="width:36px"></div>
+      <div class="step-item"><div class="step-circle pending" id="vs3">3</div></div>
+      <div class="step-line" id="vl3" style="width:36px"></div>
+      <div class="step-item"><div class="step-circle pending" id="vs4">4</div></div>
+    </div>
+    <div style="display:flex;gap:24px;font-size:.72rem;color:var(--muted);margin-bottom:24px;margin-top:-16px">
+      <span style="min-width:50px;text-align:center">選擇服務</span>
+      <span style="min-width:50px;text-align:center">證件審核</span>
+      <span style="min-width:50px;text-align:center">來都來了</span>
+      <span style="min-width:50px;text-align:center">確認付款</span>
+    </div>
+
+    <!-- VISA STEP 1: 選擇服務 -->
+    <div class="visa-step active" id="vfs1">
+      <div class="form-step-title">選擇服務</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 1/4</div>
+
+      <div class="vf-group">
+        <label class="vf-label">入境目的 Purpose of Entry <span style="color:var(--red)">*</span></label>
+        <div class="vf-toggle">
+          <button class="vf-tog active" onclick="visaToggle(this)">旅遊 Tourist</button>
+          <button class="vf-tog" onclick="visaToggle(this)">商務 Business</button>
+        </div>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">入境機場 / 口岸 Entry Port <span style="color:var(--red)">*</span></label>
+        <select class="vf-select" id="v-port">
+          <option value="">請選擇口岸</option>
+          <optgroup label="北越"><option value="HAN">河內內排機場（HAN）</option><option value="HPH">海防吉碑機場（HPH）</option></optgroup>
+          <optgroup label="中越"><option value="DAD">峴港國際機場（DAD）</option></optgroup>
+          <optgroup label="南越"><option value="SGN">胡志明新山一機場（SGN）</option><option value="CXR">芽莊金蘭機場（CXR）</option><option value="PQC">富國島機場（PQC）</option></optgroup>
+        </select>
+      </div>
+      <div class="vf-group">
+        <label style="display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--muted);cursor:pointer">
+          <input type="checkbox" id="v-same-port" checked style="accent-color:var(--blue);width:auto;min-width:auto" /> 出境機場與入境相同
+        </label>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">入境日期 Entry Date <span style="color:var(--red)">*</span></label>
+        <input type="date" class="vf-input" id="v-date" onchange="visaCalcDays()" />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">預計停留天數</label>
+        <div class="vf-days" id="v-days-display">—</div>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">簽證方案 <span style="color:var(--red)">*</span></label>
+        <div class="vf-options">
+          <label class="vf-option active" onclick="visaSelectPlan(this,1788,'90 天標準簽證')"><input type="radio" name="v-plan" checked /><div class="vf-option-inner"><div class="vf-option-title">90 天標準簽證</div><div class="vf-option-meta">NT$1,788 起 / 7 工作日</div></div></label>
+          <label class="vf-option" onclick="visaSelectPlan(this,1268,'30 天入門輕旅件')"><input type="radio" name="v-plan" /><div class="vf-option-inner"><div class="vf-option-title">30 天入門輕旅件</div><div class="vf-option-meta">NT$1,268 起 / 14 工作日</div></div></label>
+        </div>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">處理速度 Processing Speed</label>
+        <div class="vf-speeds">
+          <label class="vf-speed active" onclick="visaSelectSpeed(this,0,'標準')"><input type="radio" name="v-speed" checked /><div class="vf-speed-name">標準</div><div class="vf-speed-meta">含在方案價</div></label>
+          <label class="vf-speed" onclick="visaSelectSpeed(this,1430,'專人快速')"><input type="radio" name="v-speed" /><div class="vf-speed-name">專人快速</div><div class="vf-speed-meta">+NT$1,430<br>2 工作日</div></label>
+          <label class="vf-speed" onclick="visaSelectSpeed(this,3055,'隔日衝刺')"><input type="radio" name="v-speed" /><div class="vf-speed-name">隔日衝刺</div><div class="vf-speed-meta">+NT$3,055<br>次日核發</div></label>
+          <label class="vf-speed" onclick="visaSelectSpeed(this,5005,'當日閃電')"><input type="radio" name="v-speed" /><div class="vf-speed-name">當日閃電</div><div class="vf-speed-meta">+NT$5,005<br>當日核發</div></label>
+          <label class="vf-speed" onclick="visaSelectSpeed(this,6955,'週末急件')"><input type="radio" name="v-speed" /><div class="vf-speed-name">週末急件</div><div class="vf-speed-meta">+NT$6,955<br>週末當日</div></label>
+        </div>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">入境規模</label>
+        <div class="vf-toggle">
+          <button class="vf-tog active" onclick="visaEntry(this,0)">單次入境</button>
+          <button class="vf-tog" onclick="visaEntry(this,943)">多次入境（+NT$943）</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:12px">
+        <button class="form-prev" onclick="closeDetail()" style="flex:1">← 上一步</button>
+        <button class="card-btn card-btn-outline" onclick="visaGoStep(2)" style="flex:2">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- VISA STEP 2: 證件審核 -->
+    <div class="visa-step" id="vfs2">
+      <div class="form-step-title">證件審核</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 2/4 — 請填寫護照資料</div>
+      <div class="vf-group">
+        <label class="vf-label">護照姓名（英文，與護照一致）<span style="color:var(--red)"> *</span></label>
+        <input type="text" class="vf-input" id="v-passport-name" placeholder="如：WANG DA MING" required />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">護照號碼 <span style="color:var(--red)">*</span></label>
+        <input type="text" class="vf-input" id="v-passport-no" placeholder="如：123456789" required />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">國籍 <span style="color:var(--red)">*</span></label>
+        <select class="vf-select" id="v-nationality">
+          <option value="">請選擇</option>
+          <option value="TW" selected>台灣 Taiwan</option>
+          <option value="HK">香港 Hong Kong</option>
+          <option value="CN">中國 China</option>
+          <option value="OTHER">其他</option>
+        </select>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">性別 <span style="color:var(--red)">*</span></label>
+        <div class="vf-toggle">
+          <button class="vf-tog active" onclick="visaToggle(this)">男 Male</button>
+          <button class="vf-tog" onclick="visaToggle(this)">女 Female</button>
+        </div>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">出生日期 <span style="color:var(--red)">*</span></label>
+        <input type="date" class="vf-input" id="v-birthday" />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">護照到期日 <span style="color:var(--red)">*</span></label>
+        <input type="date" class="vf-input" id="v-passport-exp" />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">上傳護照資料頁 <span style="color:var(--red)">*</span></label>
+        <label class="vf-upload" id="v-upload-area">
+          <input type="file" id="v-passport-file" accept="image/*,.pdf" style="display:none" onchange="handlePassportUpload(this)" />
+          <div class="vf-upload-icon">📄</div>
+          <div class="vf-upload-text">點擊或拖曳上傳護照資料頁</div>
+          <div class="vf-upload-hint">支援 JPG、PNG、PDF，檔案大小不超過 10MB</div>
+        </label>
+        <div class="vf-upload-preview" id="v-upload-preview" style="display:none">
+          <span id="v-upload-filename"></span>
+          <button onclick="clearPassportUpload()" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:.85rem;font-weight:600">✕ 移除</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <button class="form-prev" onclick="visaGoStep(1)" style="flex:1">← 上一步</button>
+        <button class="card-btn card-btn-outline" onclick="visaGoStep(3)" style="flex:2">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- VISA STEP 3: 來都來了 + 弘越心選服務 -->
+    <div class="visa-step" id="vfs3">
+      <div class="form-step-title">來都來了，還想要</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 3/4 — 來都來了，還想要搭配其他服務嗎？</div>
+
+      <div class="vf-group">
+        <label class="vf-label">機場快速通關（入境）</label>
+        <div class="vf-options" style="flex-direction:column">
+          <label class="vf-option" onclick="visaAddon(this,'ft-in',0)"><input type="radio" name="vft-in" checked /><div class="vf-option-inner"><div class="vf-option-title">不需要</div></div></label>
+          <label class="vf-option" onclick="visaAddon(this,'ft-in',1140)"><input type="radio" name="vft-in" /><div class="vf-option-inner"><div class="vf-option-title">入境基本通關</div><div class="vf-option-meta">+NT$1,140（≈USD 35）</div></div></label>
+          <label class="vf-option" onclick="visaAddon(this,'ft-in',1630)"><input type="radio" name="vft-in" /><div class="vf-option-inner"><div class="vf-option-title">入境全程服務（含行李+引導上車）</div><div class="vf-option-meta">+NT$1,630（≈USD 50）· 簽證+快通組合折 NT$163</div></div></label>
+        </div>
+      </div>
+
+      <div class="vf-group">
+        <label class="vf-label">機場快速通關（出境）</label>
+        <div class="vf-options" style="flex-direction:column">
+          <label class="vf-option" onclick="visaAddon(this,'ft-out',0)"><input type="radio" name="vft-out" checked /><div class="vf-option-inner"><div class="vf-option-title">不需要</div></div></label>
+          <label class="vf-option" onclick="visaAddon(this,'ft-out',1300)"><input type="radio" name="vft-out" /><div class="vf-option-inner"><div class="vf-option-title">出境基本通關</div><div class="vf-option-meta">+NT$1,300（≈USD 40）</div></div></label>
+          <label class="vf-option" onclick="visaAddon(this,'ft-out',1790)"><input type="radio" name="vft-out" /><div class="vf-option-inner"><div class="vf-option-title">出境全程服務（含 Check-in + 行李託運）</div><div class="vf-option-meta">+NT$1,790（≈USD 55）</div></div></label>
+        </div>
+      </div>
+
+      <div class="vf-group" style="border-top:1.5px solid var(--border-light);padding-top:18px;margin-top:8px">
+        <label class="vf-label">弘越心選 · 其他服務（可多選）</label>
+        <div class="vf-options" style="flex-direction:column">
+          <label class="vf-option" style="cursor:pointer" onclick="visaToggleExtra(this,'機場接送')"><input type="checkbox" style="display:none" /><div class="vf-option-inner"><div class="vf-option-title">🚗 機場接送 / 包車服務</div><div class="vf-option-meta">到達後安排中文司機接送</div></div></label>
+          <label class="vf-option" style="cursor:pointer" onclick="visaToggleExtra(this,'銀行開戶')"><input type="checkbox" style="display:none" /><div class="vf-option-inner"><div class="vf-option-title">🏦 越南銀行開戶（USD 50）</div><div class="vf-option-meta">中文專人陪同辦理</div></div></label>
+          <label class="vf-option" style="cursor:pointer" onclick="visaToggleExtra(this,'證券開戶')"><input type="checkbox" style="display:none" /><div class="vf-option-inner"><div class="vf-option-title">📈 越南證券開戶（USD 200）</div><div class="vf-option-meta">可與銀行同日辦理</div></div></label>
+          <label class="vf-option" style="cursor:pointer" onclick="visaToggleExtra(this,'房地產考察')"><input type="checkbox" style="display:none" /><div class="vf-option-inner"><div class="vf-option-title">🏗️ 房地產考察行程</div><div class="vf-option-meta">北越 / 南越建案實地考察</div></div></label>
+          <label class="vf-option" style="cursor:pointer" onclick="visaToggleExtra(this,'旅遊行程')"><input type="checkbox" style="display:none" /><div class="vf-option-inner"><div class="vf-option-title">🌴 旅遊行程安排</div><div class="vf-option-meta">下龍灣、胡志明、富國島等</div></div></label>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <button class="form-prev" onclick="visaGoStep(2)" style="flex:1">← 上一步</button>
+        <button class="card-btn card-btn-outline" onclick="visaGoStep(4)" style="flex:2">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- VISA STEP 4: 確認付款 -->
+    <div class="visa-step" id="vfs4">
+      <div class="form-step-title">確認付款</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 4/4 — 請確認訂單內容並留下聯繫方式</div>
+
+      <div class="vf-summary" id="visa-final-summary"></div>
+
+      <div class="vf-group" style="margin-top:20px">
+        <label class="vf-label">姓名（真實姓名）<span style="color:var(--red)"> *</span></label>
+        <input type="text" class="vf-input" id="v-name" placeholder="請輸入真實姓名" required />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">手機號碼 <span style="color:var(--red)">*</span></label>
+        <input type="tel" class="vf-input" id="v-phone" placeholder="+886 / +84 / +1" required />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">Email <span style="color:var(--red)">*</span></label>
+        <input type="email" class="vf-input" id="v-email" placeholder="your@email.com" required />
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="vf-group" style="flex:1">
+          <label class="vf-label">通訊軟體 <span style="color:var(--red)">*</span></label>
+          <select class="vf-select" id="v-contact-type"><option value="">請選擇</option><option value="LINE">LINE</option><option value="WeChat">微信</option><option value="Zalo">Zalo</option><option value="WhatsApp">WhatsApp</option></select>
+        </div>
+        <div class="vf-group" style="flex:1">
+          <label class="vf-label">帳號 / ID <span style="color:var(--red)">*</span></label>
+          <input type="text" class="vf-input" id="v-contact-id" placeholder="請輸入帳號" required />
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:20px">
+        <button class="form-prev" onclick="visaGoStep(3)" style="flex:1">← 上一步</button>
+        <button class="card-btn card-btn-outline" onclick="visaSubmit()" style="flex:2">確認付款 →</button>
+      </div>
+    </div>
+
+    <!-- VISA SUCCESS -->
+    <div class="visa-step" id="vfs-done">
+      <div style="text-align:center;padding:32px 0">
+        <div style="font-size:3.5rem;margin-bottom:14px;color:var(--blue)">✓</div>
+        <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-bottom:10px">簽證申請已送出！</div>
+        <div style="font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.8">感謝你的申請，我們的專員將於 24 小時內與你聯繫確認付款方式。<br />如有急件請直接聯繫 LINE 客服。</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ UNIFIED SERVICE BOOKING OVERLAY ═══ -->
+<div class="detail-overlay" id="detail-service" onclick="closeDetail(event)">
+  <div class="detail-box" onclick="event.stopPropagation()" style="max-width:540px">
+    <button class="detail-close" onclick="closeDetail()">&times;</button>
+
+    <!-- Step Bar -->
+    <div class="step-bar" id="svcStepBar" style="margin-bottom:20px;justify-content:flex-start">
+      <div class="step-item"><div class="step-circle current" id="ss1">1</div></div>
+      <div class="step-line" id="ssl1" style="width:36px"></div>
+      <div class="step-item"><div class="step-circle pending" id="ss2">2</div></div>
+      <div class="step-line" id="ssl2" style="width:36px"></div>
+      <div class="step-item"><div class="step-circle pending" id="ss3">3</div></div>
+      <div class="step-line" id="ssl3" style="width:36px"></div>
+      <div class="step-item"><div class="step-circle pending" id="ss4">4</div></div>
+    </div>
+    <div style="display:flex;gap:24px;font-size:.72rem;color:var(--muted);margin-bottom:24px;margin-top:-12px">
+      <span style="min-width:50px;text-align:center">服務內容</span>
+      <span style="min-width:50px;text-align:center">來都來了，還想要</span>
+      <span style="min-width:50px;text-align:center">填寫資料</span>
+      <span style="min-width:50px;text-align:center">確認送出</span>
+    </div>
+
+    <!-- SVC STEP 1: 服務內容 -->
+    <div class="visa-step active" id="sfs1">
+      <div class="form-step-title" id="svc-detail-title"></div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 1/4 — 服務說明</div>
+      <div id="svc-detail-body"></div>
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <button class="form-prev" onclick="closeDetail()" style="flex:1">← 上一步</button>
+        <button class="card-btn card-btn-outline" onclick="svcGoStep(2)" style="flex:2">預約服務 →</button>
+      </div>
+    </div>
+
+    <!-- SVC STEP 2: 來都來了，還想要 -->
+    <div class="visa-step" id="sfs2">
+      <div class="form-step-title">來都來了，還想要</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 2/4 — 是否需要搭配其他服務？點選後可展開詳細選項</div>
+      <div style="display:flex;flex-direction:column;gap:10px" id="svc-extras">
+
+        <!-- 簽證辦理 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="closeDetail();openDetail('visa')" style="cursor:pointer">
+            <div class="vf-option-title">🗂️ 簽證辦理</div>
+            <div class="vf-option-meta">NT$1,268 起 → 點擊進入申請流程（含證件審核與付款）</div>
+          </div>
+        </div>
+
+        <!-- 快速通關 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="closeDetail();openDetail('visa')" style="cursor:pointer">
+            <div class="vf-option-title">✈️ 機場快速通關</div>
+            <div class="vf-option-meta">USD 35 起 → 點擊進入申請流程（可在簽證流程中加購）</div>
+          </div>
+        </div>
+
+        <!-- 機場接送 / 包車 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="addonToggle(this)">
+            <div class="vf-option-title">🚗 機場接送 / 包車服務</div>
+            <div class="vf-option-meta">中文司機全程服務</div>
+          </div>
+          <div class="addon-detail">
+            <div class="addon-sub" onclick="addonSelect(this,'機場接送（單程）')">機場接送（單程）</div>
+            <div class="addon-sub" onclick="addonSelect(this,'機場接送（來回）')">機場接送（來回）</div>
+            <div class="addon-sub" onclick="addonSelect(this,'市區包車（半日）')">市區包車（半日）</div>
+            <div class="addon-sub" onclick="addonSelect(this,'市區包車（全日）')">市區包車（全日）</div>
+          </div>
+        </div>
+
+        <!-- 銀行開戶 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="addonToggle(this)">
+            <div class="vf-option-title">🏦 越南銀行開戶</div>
+            <div class="vf-option-meta">USD 50，中文專人陪同</div>
+          </div>
+          <div class="addon-detail">
+            <div class="addon-sub" onclick="addonSelect(this,'銀行開戶 — 渣打銀行')">渣打銀行開戶 — USD 50</div>
+            <div class="addon-sub" onclick="addonSelect(this,'銀行開戶 — 匯豐銀行')">匯豐銀行開戶 — USD 50</div>
+          </div>
+        </div>
+
+        <!-- 證券開戶 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="addonToggle(this)">
+            <div class="vf-option-title">📈 越南證券開戶</div>
+            <div class="vf-option-meta">USD 200，可與銀行同日辦理</div>
+          </div>
+          <div class="addon-detail">
+            <div class="addon-sub" onclick="addonSelect(this,'證券開戶（USD 200）')">越南證券開戶 — USD 200 / 人</div>
+            <div class="addon-sub" onclick="addonSelect(this,'銀行+證券同日辦理')">銀行 + 證券同日辦理（USD 250 套裝）</div>
+          </div>
+        </div>
+
+        <!-- 房地產考察 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="addonToggle(this)">
+            <div class="vf-option-title">🏗️ 房地產考察</div>
+            <div class="vf-option-meta">北越 / 南越建案實地考察</div>
+          </div>
+          <div class="addon-detail">
+            <div class="addon-sub" onclick="addonSelect(this,'北越 — 河內核心經濟圈考察')">河內核心經濟圈考察（河內/北寧/北江）</div>
+            <div class="addon-sub" onclick="addonSelect(this,'北越 — 海防港市考察')">海防港市發展潛力考察</div>
+            <div class="addon-sub" onclick="addonSelect(this,'南越 — 胡志明都會圈考察')">胡志明核心都會圈考察（胡志明/平陽）</div>
+          </div>
+        </div>
+
+        <!-- 旅遊行程 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="addonToggle(this)">
+            <div class="vf-option-title">🌴 旅遊行程安排</div>
+            <div class="vf-option-meta">下龍灣、胡志明等經典路線</div>
+          </div>
+          <div class="addon-detail" data-single="true">
+            <div class="addon-sub" onclick="addonSelectSingle(this,'北越 — 下龍灣郵輪')">下龍灣兩天一夜郵輪（北越）</div>
+            <div class="addon-sub" onclick="addonSelectSingle(this,'北越 — 河內文化一日遊')">河內市區文化一日遊（北越）</div>
+            <div class="addon-sub" onclick="addonSelectSingle(this,'南越 — 胡志明文化一日遊')">胡志明市區文化一日遊（南越）</div>
+            <div class="addon-sub" onclick="addonSelectSingle(this,'客製化旅遊行程')">客製化旅遊行程（依需求規劃）</div>
+          </div>
+        </div>
+
+        <!-- 不需要 -->
+        <div class="addon-item">
+          <div class="addon-header" onclick="addonSkip()" style="opacity:.7">
+            <div class="vf-option-title">⏭️ 不需要，謝謝</div>
+          </div>
+        </div>
+
+      </div>
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <button class="form-prev" onclick="svcGoStep(1)" style="flex:1">← 上一步</button>
+        <button class="card-btn card-btn-outline" onclick="svcGoStep(3)" style="flex:2">下一步 →</button>
+      </div>
+    </div>
+
+    <!-- SVC STEP 3: 填寫資料 -->
+    <div class="visa-step" id="sfs3">
+      <div class="form-step-title">填寫你的資料</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 3/4 — 所有欄位皆為必填</div>
+      <div class="vf-group">
+        <label class="vf-label">姓名（請填寫真實姓名）<span style="color:var(--red)"> *</span></label>
+        <input type="text" class="vf-input" id="s-name" placeholder="請輸入真實姓名" required />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">手機號碼 <span style="color:var(--red)">*</span></label>
+        <input type="tel" class="vf-input" id="s-phone" placeholder="+886 / +84 / +1" required />
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">Email <span style="color:var(--red)">*</span></label>
+        <input type="email" class="vf-input" id="s-email" placeholder="your@email.com" required />
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="vf-group" style="flex:1">
+          <label class="vf-label">通訊軟體 <span style="color:var(--red)">*</span></label>
+          <select class="vf-select" id="s-contact-type"><option value="">請選擇</option><option value="LINE">LINE</option><option value="WeChat">微信</option><option value="Zalo">Zalo</option><option value="WhatsApp">WhatsApp</option></select>
+        </div>
+        <div class="vf-group" style="flex:1">
+          <label class="vf-label">帳號 / ID <span style="color:var(--red)">*</span></label>
+          <input type="text" class="vf-input" id="s-contact-id" placeholder="請輸入帳號" required />
+        </div>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">預計到越南日期 <span style="color:var(--red)">*</span></label>
+        <div style="display:flex;gap:10px;align-items:center">
+          <input type="date" class="vf-input" id="s-date" style="flex:1" />
+          <label style="display:flex;align-items:center;gap:6px;font-size:.84rem;color:var(--muted);white-space:nowrap;cursor:pointer"><input type="checkbox" id="s-date-tbd" onchange="this.checked?(document.getElementById('s-date').disabled=true,document.getElementById('s-date').style.opacity='.4'):(document.getElementById('s-date').disabled=false,document.getElementById('s-date').style.opacity='1')" style="width:auto;min-width:auto;accent-color:var(--blue)" /> 尚未確定</label>
+        </div>
+      </div>
+      <div class="vf-group">
+        <label class="vf-label">備註</label>
+        <textarea class="vf-input" id="s-note" rows="3" placeholder="人數、特殊需求、想了解的細節..." style="resize:vertical"></textarea>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <button class="form-prev" onclick="svcGoStep(2)" style="flex:1">← 上一步</button>
+        <button class="card-btn card-btn-outline" onclick="svcGoStep(4)" style="flex:2">確認資訊 →</button>
+      </div>
+    </div>
+
+    <!-- SVC STEP 4: 確認送出 -->
+    <div class="visa-step" id="sfs4">
+      <div class="form-step-title">確認送出</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Step 4/4 — 請確認以下資訊</div>
+      <div class="vf-summary" id="svc-final-summary"></div>
+      <div style="display:flex;gap:12px;margin-top:20px">
+        <button class="form-prev" onclick="svcGoStep(3)" style="flex:1">← 修改</button>
+        <button class="card-btn card-btn-outline" onclick="svcSubmit()" style="flex:2">確認送出 →</button>
+      </div>
+    </div>
+
+    <!-- SVC SUCCESS -->
+    <div class="visa-step" id="sfs-done">
+      <div style="text-align:center;padding:32px 0">
+        <div style="font-size:3.5rem;margin-bottom:14px;color:var(--blue)">✓</div>
+        <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-bottom:10px">預約已送出！</div>
+        <div style="font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.8">感謝你的預約，我們的專員將於 24 小時內與你聯繫。<br />如有急件請直接聯繫 LINE 客服。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP FORM ═══ -->
+<div class="form-section" id="contact">
+  <div class="section">
+    <div class="sec-center">
+      <div class="sec-eyebrow">Get Started</div>
+      <div class="sec-title">立即規劃你的越南行程</div>
+      <div class="sec-desc">簡單幾步完成預約，專員 24 小時內與你聯繫。</div>
+    </div>
+
+    <div class="step-bar" id="stepBar">
+      <div class="step-item"><div class="step-circle current" id="sc1">1</div></div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step-item"><div class="step-circle pending" id="sc2">2</div></div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step-item"><div class="step-circle pending" id="sc3">3</div></div>
+      <div class="step-line" id="sl3"></div>
+      <div class="step-item"><div class="step-circle pending" id="sc4">4</div></div>
+    </div>
+
+    <div class="form-card">
+      <!-- Step 1: 選服務 -->
+      <div class="form-step active" id="fs1">
+        <div class="form-step-title">Step 1 — 你需要什麼服務？</div>
+        <div style="display:flex;flex-direction:column;gap:10px" id="svcOptions">
+
+          <!-- 行政服務 -->
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainSvcToggle(this,'行政服務')">
+              <div class="vf-option-title">📋 行政服務（簽約 / 交屋 / 辦證）</div>
+            </div>
+            <div class="addon-detail">
+              <div class="addon-sub" onclick="openDetail('visa')">簽證辦理（NT$1,268 起）→ 進入申請流程</div>
+              <div class="addon-sub" onclick="openDetail('visa')">機場快速通關（USD 35 起）→ 進入申請流程</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'合約簽署')">合約簽署服務</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'房產交屋')">房產交屋驗收</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'粉紅簿辦理')">粉紅簿（房產證）辦理</div>
+            </div>
+          </div>
+
+          <!-- 金融服務 -->
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainSvcToggle(this,'金融服務')">
+              <div class="vf-option-title">🏦 金融服務（銀行 / 證券開戶）</div>
+            </div>
+            <div class="addon-detail">
+              <div class="addon-sub" onclick="mainSvcSelect(this,'銀行開戶 — 渣打銀行')">渣打銀行開戶（USD 50）</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'銀行開戶 — 匯豐銀行')">匯豐銀行開戶（USD 50）</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'證券開戶')">越南證券開戶（USD 200）</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'銀行+證券同日辦理')">銀行 + 證券同日辦理（USD 250 套裝）</div>
+            </div>
+          </div>
+
+          <!-- 房地產考察 -->
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainSvcToggle(this,'房地產考察')">
+              <div class="vf-option-title">🏗️ 房地產考察</div>
+            </div>
+            <div class="addon-detail">
+              <div class="addon-sub" onclick="mainSvcSelect(this,'河內核心經濟圈考察')">河內核心經濟圈考察（河內/北寧/北江）</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'海防港市考察')">海防港市發展潛力考察</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'胡志明都會圈考察')">胡志明核心都會圈考察（胡志明/平陽）</div>
+            </div>
+          </div>
+
+          <!-- 包車接送 -->
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainSvcToggle(this,'包車接送')">
+              <div class="vf-option-title">🚗 包車接送</div>
+            </div>
+            <div class="addon-detail">
+              <div class="addon-sub" onclick="mainSvcSelect(this,'機場接送（單程）')">機場接送（單程）</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'機場接送（來回）')">機場接送（來回）</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'市區包車（半日）')">市區包車（半日）</div>
+              <div class="addon-sub" onclick="mainSvcSelect(this,'市區包車（全日）')">市區包車（全日）</div>
+            </div>
+          </div>
+
+          <!-- 旅遊行程 -->
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainSvcToggle(this,'旅遊行程')">
+              <div class="vf-option-title">🌴 旅遊行程</div>
+            </div>
+            <div class="addon-detail" data-single="true">
+              <div class="addon-sub" onclick="mainSvcSelectSingle(this,'下龍灣兩天一夜郵輪')">下龍灣兩天一夜郵輪（北越）</div>
+              <div class="addon-sub" onclick="mainSvcSelectSingle(this,'河內文化一日遊')">河內市區文化一日遊（北越）</div>
+              <div class="addon-sub" onclick="mainSvcSelectSingle(this,'胡志明文化一日遊')">胡志明市區文化一日遊（南越）</div>
+              <div class="addon-sub" onclick="mainSvcSelectSingle(this,'客製化旅遊行程')">客製化旅遊行程（依需求規劃）</div>
+            </div>
+          </div>
+
+          <!-- 其他 -->
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainSvcDirect(this,'其他 / 多項服務')">
+              <div class="vf-option-title">💬 其他 / 多項服務</div>
+            </div>
+          </div>
+
+          <!-- 不需要 -->
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainSvcDirect(this,'不需要，謝謝')" style="opacity:.7">
+              <div class="vf-option-title">⏭️ 不需要，謝謝</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="form-nav">
+          <button class="form-prev" onclick="window.scrollTo({top:0,behavior:'smooth'})">← 回到頂部</button>
+          <button class="form-next" id="btn1" disabled onclick="goStep(2)">下一步 →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: 來都來了，還想要 -->
+      <div class="form-step" id="fs2">
+        <div class="form-step-title">Step 2 — 來都來了，還想要</div>
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:16px">是否需要搭配其他服務？點選展開詳細選項</div>
+        <div style="display:flex;flex-direction:column;gap:10px" id="addonOptions">
+
+          <div class="addon-item">
+            <div class="addon-header" onclick="openDetail('visa')" style="cursor:pointer">
+              <div class="vf-option-title">🗂️ 簽證辦理</div>
+              <div class="vf-option-meta">NT$1,268 起 → 點擊進入申請流程（含證件審核與付款）</div>
+            </div>
+          </div>
+
+          <div class="addon-item">
+            <div class="addon-header" onclick="openDetail('visa')" style="cursor:pointer">
+              <div class="vf-option-title">✈️ 快速通關</div>
+              <div class="vf-option-meta">USD 35 起 → 點擊進入申請流程（可在簽證流程中加購）</div>
+            </div>
+          </div>
+
+          <div class="addon-item">
+            <div class="addon-header" onclick="addonToggle2(this)"><div class="vf-option-title">🚗 機場接送 / 包車</div></div>
+            <div class="addon-detail">
+              <div class="addon-sub" onclick="mainAddonSelect(this,'機場接送（單程）')">機場接送（單程）</div>
+              <div class="addon-sub" onclick="mainAddonSelect(this,'機場接送（來回）')">機場接送（來回）</div>
+              <div class="addon-sub" onclick="mainAddonSelect(this,'市區包車（半日）')">市區包車（半日）</div>
+              <div class="addon-sub" onclick="mainAddonSelect(this,'市區包車（全日）')">市區包車（全日）</div>
+            </div>
+          </div>
+
+          <div class="addon-item">
+            <div class="addon-header" onclick="addonToggle2(this)"><div class="vf-option-title">🏦 銀行 / 證券開戶</div></div>
+            <div class="addon-detail">
+              <div class="addon-sub" onclick="mainAddonSelect(this,'銀行開戶（USD 50）')">越南銀行開戶（USD 50）</div>
+              <div class="addon-sub" onclick="mainAddonSelect(this,'證券開戶（USD 200）')">越南證券開戶（USD 200）</div>
+            </div>
+          </div>
+
+          <div class="addon-item">
+            <div class="addon-header" onclick="addonToggle2(this)"><div class="vf-option-title">🏗️ 房地產考察</div></div>
+            <div class="addon-detail">
+              <div class="addon-sub" onclick="mainAddonSelect(this,'河內經濟圈考察')">河內核心經濟圈考察</div>
+              <div class="addon-sub" onclick="mainAddonSelect(this,'海防港市考察')">海防港市考察</div>
+              <div class="addon-sub" onclick="mainAddonSelect(this,'胡志明都會圈考察')">胡志明都會圈考察</div>
+            </div>
+          </div>
+
+          <div class="addon-item">
+            <div class="addon-header" onclick="addonToggle2(this)"><div class="vf-option-title">🌴 旅遊行程</div></div>
+            <div class="addon-detail" data-single="true">
+              <div class="addon-sub" onclick="mainAddonSelectSingle(this,'下龍灣郵輪')">下龍灣兩天一夜郵輪</div>
+              <div class="addon-sub" onclick="mainAddonSelectSingle(this,'河內文化一日遊')">河內文化一日遊</div>
+              <div class="addon-sub" onclick="mainAddonSelectSingle(this,'胡志明文化一日遊')">胡志明文化一日遊</div>
+              <div class="addon-sub" onclick="mainAddonSelectSingle(this,'客製化旅遊')">客製化旅遊行程</div>
+            </div>
+          </div>
+
+          <div class="addon-item">
+            <div class="addon-header" onclick="mainAddonSkip()" style="opacity:.7"><div class="vf-option-title">⏭️ 不需要，謝謝</div></div>
+          </div>
+
+        </div>
+        <div class="form-nav">
+          <button class="form-prev" onclick="goStep(1)">← 上一步</button>
+          <button class="form-next" id="btn2" onclick="goStep(3)">下一步 →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: 填資料 -->
+      <div class="form-step" id="fs3">
+        <div class="form-step-title">Step 3 — 填寫你的資料</div>
+        <div class="form-row">
+          <div class="form-group full"><label>姓名（請填寫真實姓名）<span style="color:var(--red)"> *</span></label><input type="text" id="fname" placeholder="請輸入真實姓名" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>手機號碼<span style="color:var(--red)"> *</span></label><input type="tel" id="fphone" placeholder="+886 / +84 / +1" required /></div>
+          <div class="form-group"><label>Email<span style="color:var(--red)"> *</span></label><input type="email" id="femail" placeholder="your@email.com" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>通訊軟體<span style="color:var(--red)"> *</span></label><select id="fcontact-type" required><option value="">— 請選擇 —</option><option value="LINE">LINE ID</option><option value="微信 WeChat">微信（WeChat）</option><option value="Zalo">Zalo</option><option value="WhatsApp">WhatsApp</option></select></div>
+          <div class="form-group"><label>帳號 / ID<span style="color:var(--red)"> *</span></label><input type="text" id="fcontact-id" placeholder="請輸入帳號或 ID" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full"><label>預計到越南日期<span style="color:var(--red)"> *</span></label><div style="display:flex;gap:10px;align-items:center"><input type="date" id="fdate" style="flex:1" /><label style="display:flex;align-items:center;gap:6px;font-size:.84rem;color:var(--muted);font-weight:400;white-space:nowrap;cursor:pointer"><input type="checkbox" id="fdate-tbd" onchange="toggleDateTbd(this)" style="width:auto;min-width:auto;accent-color:var(--red)" /> 尚未確定</label></div></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full"><label>備註</label><textarea id="fnote" rows="3" placeholder="人數、特殊需求、想了解的細節..."></textarea></div>
+        </div>
+        <div class="form-nav">
+          <button class="form-prev" onclick="goStep(2)">← 上一步</button>
+          <button class="form-next" onclick="validateStep3()">確認資訊 →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: 確認 -->
+      <div class="form-step" id="fs4">
+        <div class="form-step-title">Step 4 — 確認你的預約</div>
+        <div class="summary" id="summary"></div>
+        <div class="form-nav">
+          <button class="form-prev" onclick="goStep(3)">← 修改</button>
+          <button class="form-submit" onclick="submitForm()">確認送出 →</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="form-success" id="formSuccess">
+        <div class="icon">✓</div>
+        <div class="msg">預約已送出！</div>
+        <div class="sub">感謝你的來信，我們的專員將於 24 小時內與你聯繫。<br />如有急件請直接聯繫 LINE 客服。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand"><span style="color:var(--red)">弘</span><span style="color:#fff">越</span><span style="color:var(--red)">心</span><span style="color:#fff">選</span><span>HONG YUE XIN XUAN</span></div>
+        <p>弘越地產官方合作平臺<br />深耕越南八年，一站式在地服務</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">服務項目</div>
+        <a href="#">行政辦理</a>
+        <a href="#">金融開戶</a>
+        <a href="#">房地產考察</a>
+        <a href="#">包車接送</a>
+        <a href="#">旅遊行程</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">聯絡我們</div>
+        <a href="#">LINE 官方帳號</a>
+        <a href="#">WeChat: hyxx_vn</a>
+        <a href="#">Email: info@hyxx.vn</a>
+        <p style="margin-top:6px">服務時間 09:00–21:00<br />含週末及假日</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">相關連結</div>
+        <a href="#">弘越地產官網 ↗</a>
+        <a href="#">服務條款</a>
+        <a href="#">隱私政策</a>
+      </div>
+    </div>
+    <div class="footer-compliance">
+      <p>弘越心選與台灣及越南合法旅行社合作，所有行程合法合規。本平臺提供全程中文服務，所有交易流程安全透明。</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 弘越心選 · 弘越地產官方合作平臺</span>
+      <span>來越南一次，把所有事辦好</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Visa form logic ── */
+var visaState={base:1788,speed:0,multi:0,planLabel:'90 天標準簽證',speedLabel:'',ftIn:0,ftOut:0,extras:[]};
+function visaToggle(btn){btn.parentNode.querySelectorAll('.vf-tog').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
+function visaSelectPlan(el,price,label){
+  el.closest('.vf-options').querySelectorAll('.vf-option').forEach(o=>o.classList.remove('active'));el.classList.add('active');
+  visaState.base=price;visaState.planLabel=label;
+}
+function visaSelectSpeed(el,price,label){
+  el.closest('.vf-speeds').querySelectorAll('.vf-speed').forEach(s=>s.classList.remove('active'));el.classList.add('active');
+  visaState.speed=price;visaState.speedLabel=label;
+}
+function visaEntry(btn,price){btn.parentNode.querySelectorAll('.vf-tog').forEach(b=>b.classList.remove('active'));btn.classList.add('active');visaState.multi=price;}
+function visaAddon(el,key,price){
+  el.closest('.vf-options').querySelectorAll('.vf-option').forEach(o=>o.classList.remove('active'));el.classList.add('active');
+  if(key==='ft-in')visaState.ftIn=price;
+  if(key==='ft-out')visaState.ftOut=price;
+}
+function visaToggleExtra(el,name){
+  el.classList.toggle('active');
+  if(el.classList.contains('active')){if(!visaState.extras.includes(name))visaState.extras.push(name);}
+  else{visaState.extras=visaState.extras.filter(e=>e!==name);}
+}
+function visaCalcDays(){
+  var d=document.getElementById('v-date').value;if(!d){document.getElementById('v-days-display').textContent='—';return;}
+  var diff=Math.ceil((new Date(d)-new Date())/(1000*60*60*24));
+  document.getElementById('v-days-display').textContent=diff>0?'距今約 '+diff+' 天':'請選擇未來日期';
+}
+function visaGoStep(n){
+  if(n===4)visaBuildSummary();
+  document.querySelectorAll('.visa-step').forEach(s=>s.classList.remove('active'));
+  var target=document.getElementById('vfs'+n);if(target)target.classList.add('active');
+  for(var i=1;i<=4;i++){
+    var c=document.getElementById('vs'+i);if(c)c.className='step-circle '+(i<n?'done':i===n?'current':'pending');
+    if(i<4){var l=document.getElementById('vl'+i);if(l)l.className='step-line'+(i<n?' done':'');}
+  }
+  document.querySelector('#detail-visa .detail-box').scrollTop=0;
+}
+function visaBuildSummary(){
+  var t=visaState.base+visaState.speed+visaState.multi+visaState.ftIn+visaState.ftOut;
+  var h='';
+  h+='<div class="vf-summary-row"><span>'+visaState.planLabel+'</span><span>NT$'+visaState.base.toLocaleString()+'</span></div>';
+  if(visaState.speed>0)h+='<div class="vf-summary-row"><span>加速：'+visaState.speedLabel+'</span><span>+NT$'+visaState.speed.toLocaleString()+'</span></div>';
+  if(visaState.multi>0)h+='<div class="vf-summary-row"><span>多次入境</span><span>+NT$943</span></div>';
+  if(visaState.ftIn>0)h+='<div class="vf-summary-row"><span>入境快速通關</span><span>+NT$'+visaState.ftIn.toLocaleString()+'</span></div>';
+  if(visaState.ftOut>0)h+='<div class="vf-summary-row"><span>出境快速通關</span><span>+NT$'+visaState.ftOut.toLocaleString()+'</span></div>';
+  if(visaState.extras.length)h+='<div class="vf-summary-row"><span>來都來了，還想要</span><span>'+visaState.extras.join('、')+'</span></div>';
+  h+='<div class="vf-summary-total"><span>總計</span><span>NT$'+t.toLocaleString()+'</span></div>';
+  h+='<div style="text-align:center;margin-top:4px;font-size:.72rem;color:var(--muted)">powered by golavisa.co</div>';
+  document.getElementById('visa-final-summary').innerHTML=h;
+}
+function visaSubmit(){
+  document.querySelectorAll('.visa-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('vfs-done').classList.add('active');
+  for(var i=1;i<=4;i++){var c=document.getElementById('vs'+i);if(c)c.className='step-circle done';}
+  for(var i=1;i<=3;i++){var l=document.getElementById('vl'+i);if(l)l.className='step-line done';}
+}
+
+/* ── Unified service booking ── */
+var svcBooking={service:'',extras:[]};
+var svcData={
+  fasttrack:{title:'機場快速通關',body:'<div style="font-size:.92rem;color:var(--muted);line-height:1.9;margin-bottom:16px">中文專員機場迎接，走獨立快速通道，整個通關流程最快 5–10 分鐘完成。支援河內（HAN）、胡志明（SGN）、峴港（DAD）三大機場。</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px"><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 入境 / 出境快速通關</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 中文專員全程陪同</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 行李提領協助</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 專人引導至接機車輛</li></ul><div style="font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--red)">USD 35 起 / 人</div>'},
+  contract:{title:'合約簽署服務',body:'<div style="font-size:.92rem;color:var(--muted);line-height:1.9;margin-bottom:16px">購買越南房產涉及多份法律文件，我們提供專業團隊全程協助，確保你清楚了解每一條合約內容。</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px"><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 合約內容中文逐條翻譯解說</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 專業團隊陪同至現場簽署</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 後續付款時程提醒</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 需本人親赴越南</li></ul>'},
+  handover:{title:'房產交屋驗收',body:'<div style="font-size:.92rem;color:var(--muted);line-height:1.9;margin-bottom:16px">不方便親自到越南交屋？委託我們的專業驗屋團隊，依據標準檢查清單逐項驗收，附帶完整圖文報告。</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px"><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 室內裝修與建材品質檢查</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 水電管線功能測試</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 48 小時完整圖文驗收報告</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 缺失清單與建商交涉代辦</li></ul>'},
+  pinkbook:{title:'粉紅簿（房產證）辦理',body:'<div style="font-size:.92rem;color:var(--muted);line-height:1.9;margin-bottom:16px">越南房產所有權的正式證明文件，等同於台灣的房屋權狀。我們協助完成從文件準備、公證到送件的完整流程。</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px"><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 文件翻譯與公證</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 護照認證協助</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 代送越南地政單位</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 進度追蹤與粉紅簿寄送</li></ul><div style="font-size:.82rem;color:var(--blue)">辦理時程約 3–6 個月</div>'},
+  'travel-custom':{title:'客製化旅遊行程',body:'<div style="font-size:.92rem;color:var(--muted);line-height:1.9;margin-bottom:16px">告訴我們你的興趣、停留天數與預算，我們為你量身規劃最適合的越南旅遊體驗，可搭配考察或行政行程一起安排。</div><ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px"><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 在地美食與文化體驗</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 景點觀光與導覽</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 可搭配考察 / 行政行程</li><li style="display:flex;align-items:center;gap:8px;font-size:.9rem"><span style="color:var(--blue);font-weight:700">✓</span> 中文全程陪同</li></ul>'}
+};
+function openServiceBooking(id){
+  svcBooking={service:svcData[id].title,extras:[]};
+  document.getElementById('svc-detail-title').textContent=svcData[id].title;
+  document.getElementById('svc-detail-body').innerHTML=svcData[id].body;
+  // reset extras
+  document.querySelectorAll('#svc-extras .vf-option').forEach(o=>o.classList.remove('active'));
+  // reset steps
+  document.querySelectorAll('#detail-service .visa-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sfs1').classList.add('active');
+  for(var i=1;i<=4;i++){var c=document.getElementById('ss'+i);if(c)c.className='step-circle '+(i===1?'current':'pending');if(i<4){var l=document.getElementById('ssl'+i);if(l)l.className='step-line';}}
+  openDetail('service');
+}
+function addonToggle(header){
+  var item=header.closest('.addon-item');
+  var wasOpen=item.classList.contains('open');
+  // close all others
+  document.querySelectorAll('#svc-extras .addon-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+function addonSelect(el,val){
+  // toggle selected state
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')){
+    if(!svcBooking.extras.includes(val))svcBooking.extras.push(val);
+  }else{
+    svcBooking.extras=svcBooking.extras.filter(e=>e!==val);
+  }
+  // update header badge
+  var item=el.closest('.addon-item');
+  var count=item.querySelectorAll('.addon-sub.selected').length;
+  var header=item.querySelector('.addon-header');
+  var badge=header.querySelector('.addon-badge');
+  if(count>0){
+    if(!badge){badge=document.createElement('span');badge.className='addon-badge';header.appendChild(badge);}
+    badge.textContent='已選 '+count+' 項';
+  }else{
+    if(badge)badge.remove();
+  }
+}
+function addonSelectSingle(el,val){
+  var detail=el.closest('.addon-detail');
+  // remove previous selections in this group from extras
+  detail.querySelectorAll('.addon-sub.selected').forEach(function(s){
+    var old=s.getAttribute('data-val')||s.textContent;
+    svcBooking.extras=svcBooking.extras.filter(function(e){return e!==old;});
+    s.classList.remove('selected');
+  });
+  // if clicking same one, just deselect
+  if(el.classList.contains('selected')){el.classList.remove('selected');svcBooking.extras=svcBooking.extras.filter(function(e){return e!==val;});}
+  else{el.classList.add('selected');el.setAttribute('data-val',val);if(!svcBooking.extras.includes(val))svcBooking.extras.push(val);}
+  // update badge
+  var item=el.closest('.addon-item');var count=item.querySelectorAll('.addon-sub.selected').length;
+  var header=item.querySelector('.addon-header');var badge=header.querySelector('.addon-badge');
+  if(count>0){if(!badge){badge=document.createElement('span');badge.className='addon-badge';header.appendChild(badge);}badge.textContent='已選';}
+  else{if(badge)badge.remove();}
+}
+function addonSkip(){
+  // clear all selections
+  document.querySelectorAll('#svc-extras .addon-sub').forEach(s=>s.classList.remove('selected'));
+  document.querySelectorAll('#svc-extras .addon-badge').forEach(b=>b.remove());
+  document.querySelectorAll('#svc-extras .addon-item').forEach(i=>i.classList.remove('open'));
+  svcBooking.extras=[];
+}
+function svcGoStep(n){
+  if(n===4)svcBuildSummary();
+  document.querySelectorAll('#detail-service .visa-step').forEach(s=>s.classList.remove('active'));
+  var t=document.getElementById('sfs'+n);if(t)t.classList.add('active');
+  for(var i=1;i<=4;i++){var c=document.getElementById('ss'+i);if(c)c.className='step-circle '+(i<n?'done':i===n?'current':'pending');if(i<4){var l=document.getElementById('ssl'+i);if(l)l.className='step-line'+(i<n?' done':'');}}
+  document.querySelector('#detail-service .detail-box').scrollTop=0;
+}
+function svcBuildSummary(){
+  var h='';
+  h+='<div class="vf-summary-row"><span>主要服務</span><span style="font-weight:600;color:var(--text)">'+svcBooking.service+'</span></div>';
+  h+='<div class="vf-summary-row"><span>來都來了，還想要</span><span style="font-weight:600;color:var(--text)">'+(svcBooking.extras.length?svcBooking.extras.join('、'):'無')+'</span></div>';
+  var n=document.getElementById('s-name').value;
+  var p=document.getElementById('s-phone').value;
+  var e=document.getElementById('s-email').value;
+  var ct=document.getElementById('s-contact-type').value;
+  var ci=document.getElementById('s-contact-id').value;
+  var d=document.getElementById('s-date-tbd').checked?'尚未確定':document.getElementById('s-date').value;
+  h+='<div class="vf-summary-row"><span>姓名</span><span style="font-weight:600;color:var(--text)">'+n+'</span></div>';
+  h+='<div class="vf-summary-row"><span>電話</span><span style="font-weight:600;color:var(--text)">'+p+'</span></div>';
+  h+='<div class="vf-summary-row"><span>Email</span><span style="font-weight:600;color:var(--text)">'+e+'</span></div>';
+  if(ct)h+='<div class="vf-summary-row"><span>'+ct+'</span><span style="font-weight:600;color:var(--text)">'+ci+'</span></div>';
+  h+='<div class="vf-summary-row"><span>預計日期</span><span style="font-weight:600;color:var(--text)">'+d+'</span></div>';
+  var note=document.getElementById('s-note').value;
+  if(note)h+='<div class="vf-summary-row"><span>備註</span><span style="font-weight:600;color:var(--text)">'+note+'</span></div>';
+  document.getElementById('svc-final-summary').innerHTML=h;
+}
+function svcSubmit(){
+  document.querySelectorAll('#detail-service .visa-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sfs-done').classList.add('active');
+  for(var i=1;i<=4;i++){var c=document.getElementById('ss'+i);if(c)c.className='step-circle done';}
+  for(var i=1;i<=3;i++){var l=document.getElementById('ssl'+i);if(l)l.className='step-line done';}
+}
+
+/* ── Passport upload ── */
+function handlePassportUpload(input){
+  if(input.files&&input.files[0]){
+    var file=input.files[0];
+    if(file.size>10*1024*1024){alert('檔案大小不能超過 10MB');input.value='';return;}
+    document.getElementById('v-upload-area').style.display='none';
+    document.getElementById('v-upload-preview').style.display='flex';
+    document.getElementById('v-upload-filename').textContent='📎 '+file.name;
+  }
+}
+function clearPassportUpload(){
+  document.getElementById('v-passport-file').value='';
+  document.getElementById('v-upload-area').style.display='flex';
+  document.getElementById('v-upload-preview').style.display='none';
+}
+
+/* ── Detail overlay ── */
+function openDetail(id){
+  document.getElementById('detail-'+id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDetail(e){
+  if(e&&e.target!==e.currentTarget)return;
+  document.querySelectorAll('.detail-overlay').forEach(d=>d.classList.remove('open'));
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDetail();});
+
+/* ── Service tabs ── */
+function switchSvc(id,btn){
+  document.querySelectorAll('.svc-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.svc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── Quick entry ── */
+function scrollToService(id){
+  var map={admin:'admin',finance:'finance',tour:'tour',travel:'travel'};
+  if(id==='travel'){document.getElementById('travel').scrollIntoView({behavior:'smooth'});return;}
+  document.getElementById('services').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){
+    var tab=document.querySelector('.svc-tab[onclick*="'+id+'"]');
+    if(tab)tab.click();
+  },400);
+}
+
+/* ── Form state ── */
+var formData={svc:'',addons:[],name:'',phone:'',email:'',contactType:'',contactId:'',date:'',note:''};
+
+function toggleDateTbd(cb){
+  var dateInput=document.getElementById('fdate');
+  if(cb.checked){dateInput.disabled=true;dateInput.value='';dateInput.style.opacity='.4';}
+  else{dateInput.disabled=false;dateInput.style.opacity='1';}
+}
+
+function validateStep3(){
+  var name=document.getElementById('fname').value.trim();
+  var phone=document.getElementById('fphone').value.trim();
+  var email=document.getElementById('femail').value.trim();
+  var ctype=document.getElementById('fcontact-type').value;
+  var cid=document.getElementById('fcontact-id').value.trim();
+  var date=document.getElementById('fdate').value;
+  var tbd=document.getElementById('fdate-tbd').checked;
+  if(!name||!phone||!email||!ctype||!cid||(!date&&!tbd)){
+    alert('請填寫所有必填欄位（標示 * 的項目）');return;
+  }
+  goStep(4);
+}
+
+/* ── Main form Step 1: expandable service selection ── */
+function mainSvcToggle(header,category){
+  var item=header.closest('.addon-item');
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('#svcOptions .addon-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+  formData.svc=category;
+  document.getElementById('btn1').disabled=false;
+}
+function mainSvcSelect(el,val){
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')){
+    formData.svc=val;
+  }
+  // update badge
+  var item=el.closest('.addon-item');var count=item.querySelectorAll('.addon-sub.selected').length;
+  var header=item.querySelector('.addon-header');var badge=header.querySelector('.addon-badge');
+  if(count>0){if(!badge){badge=document.createElement('span');badge.className='addon-badge';header.appendChild(badge);}badge.textContent='已選 '+count+' 項';}
+  else{if(badge)badge.remove();}
+  document.getElementById('btn1').disabled=false;
+}
+function mainSvcSelectSingle(el,val){
+  var detail=el.closest('.addon-detail');
+  detail.querySelectorAll('.addon-sub').forEach(s=>s.classList.remove('selected'));
+  el.classList.add('selected');
+  formData.svc=val;
+  var item=el.closest('.addon-item');var header=item.querySelector('.addon-header');
+  var badge=header.querySelector('.addon-badge');
+  if(!badge){badge=document.createElement('span');badge.className='addon-badge';header.appendChild(badge);}
+  badge.textContent='已選';
+  document.getElementById('btn1').disabled=false;
+}
+function mainSvcDirect(header,val){
+  document.querySelectorAll('#svcOptions .addon-item').forEach(i=>{i.classList.remove('open');i.querySelectorAll('.addon-sub.selected').forEach(s=>s.classList.remove('selected'));var b=i.querySelector('.addon-badge');if(b)b.remove();});
+  header.closest('.addon-item').classList.add('open');
+  formData.svc=val;
+  document.getElementById('btn1').disabled=false;
+}
+
+/* ── Main form Step 2: addon expandable ── */
+function addonToggle2(header){
+  var item=header.closest('.addon-item');
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('#addonOptions .addon-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+function mainAddonSelect(el,val){
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')){if(!formData.addons.includes(val))formData.addons.push(val);}
+  else{formData.addons=formData.addons.filter(a=>a!==val);}
+  var item=el.closest('.addon-item');var count=item.querySelectorAll('.addon-sub.selected').length;
+  var header=item.querySelector('.addon-header');var badge=header.querySelector('.addon-badge');
+  if(count>0){if(!badge){badge=document.createElement('span');badge.className='addon-badge';header.appendChild(badge);}badge.textContent='已選 '+count+' 項';}
+  else{if(badge)badge.remove();}
+}
+function mainAddonSelectSingle(el,val){
+  var detail=el.closest('.addon-detail');
+  detail.querySelectorAll('.addon-sub').forEach(function(s){var old=s.getAttribute('data-val');if(old)formData.addons=formData.addons.filter(a=>a!==old);s.classList.remove('selected');});
+  el.classList.add('selected');el.setAttribute('data-val',val);
+  if(!formData.addons.includes(val))formData.addons.push(val);
+  var item=el.closest('.addon-item');var header=item.querySelector('.addon-header');
+  var badge=header.querySelector('.addon-badge');
+  if(!badge){badge=document.createElement('span');badge.className='addon-badge';header.appendChild(badge);}
+  badge.textContent='已選';
+}
+function mainAddonSkip(){
+  document.querySelectorAll('#addonOptions .addon-sub').forEach(s=>s.classList.remove('selected'));
+  document.querySelectorAll('#addonOptions .addon-badge').forEach(b=>b.remove());
+  document.querySelectorAll('#addonOptions .addon-item').forEach(i=>i.classList.remove('open'));
+  formData.addons=[];
+}
+
+/* ── (legacy, kept for compatibility) ── */
+function selectOpt(el,key,val){
+  formData[key]=val;
+  document.getElementById('btn1').disabled=false;
+}
+function toggleAddon(el,val){
+  if(val==='不需要，謝謝'){
+    formData.addons=[];
+  }else{
+    el.classList.toggle('selected');
+    if(el.classList.contains('selected')){
+      if(!formData.addons.includes(val))formData.addons.push(val);
+    }else{
+      formData.addons=formData.addons.filter(a=>a!==val);
+    }
+  }
+}
+
+function goStep(n){
+  // collect step 3 data
+  if(n===4){
+    formData.name=document.getElementById('fname').value;
+    formData.phone=document.getElementById('fphone').value;
+    formData.email=document.getElementById('femail').value;
+    formData.contactType=document.getElementById('fcontact-type').value;
+    formData.contactId=document.getElementById('fcontact-id').value;
+    formData.date=document.getElementById('fdate-tbd').checked?'尚未確定':document.getElementById('fdate').value;
+    formData.note=document.getElementById('fnote').value;
+    buildSummary();
+  }
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('fs'+n).classList.add('active');
+  // update step bar
+  for(var i=1;i<=4;i++){
+    var c=document.getElementById('sc'+i);
+    c.className='step-circle '+(i<n?'done':i===n?'current':'pending');
+    if(i<4){var l=document.getElementById('sl'+i);l.className='step-line'+(i<n?' done':'');}
+  }
+}
+
+function buildSummary(){
+  var html='';
+  html+='<div class="summary-row"><span class="summary-label">主要服務</span><span class="summary-value">'+formData.svc+'</span></div>';
+  html+='<div class="summary-row"><span class="summary-label">加選服務</span><span class="summary-value">'+(formData.addons.length?formData.addons.join('、'):'無')+'</span></div>';
+  html+='<div class="summary-row"><span class="summary-label">姓名</span><span class="summary-value">'+(formData.name||'—')+'</span></div>';
+  html+='<div class="summary-row"><span class="summary-label">電話</span><span class="summary-value">'+(formData.phone||'—')+'</span></div>';
+  html+='<div class="summary-row"><span class="summary-label">Email</span><span class="summary-value">'+(formData.email||'—')+'</span></div>';
+  html+='<div class="summary-row"><span class="summary-label">'+formData.contactType+'</span><span class="summary-value">'+formData.contactId+'</span></div>';
+  html+='<div class="summary-row"><span class="summary-label">預計日期</span><span class="summary-value">'+(formData.date||'—')+'</span></div>';
+  if(formData.note)html+='<div class="summary-row"><span class="summary-label">備註</span><span class="summary-value">'+formData.note+'</span></div>';
+  document.getElementById('summary').innerHTML=html;
+}
+
+function submitForm(){
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('formSuccess').style.display='block';
+  for(var i=1;i<=4;i++){document.getElementById('sc'+i).className='step-circle done';}
+  for(var i=1;i<=3;i++){document.getElementById('sl'+i).className='step-line done';}
+}
+
+function goForm(svc){
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  // pre-select closest option
+  var opts=document.querySelectorAll('#svcOptions .form-opt');
+  opts.forEach(function(o){
+    if(o.textContent.indexOf(svc)>-1||
+       (svc.indexOf('簽證')>-1&&o.textContent.indexOf('行政')>-1)||
+       (svc.indexOf('通關')>-1&&o.textContent.indexOf('行政')>-1)||
+       (svc.indexOf('合約')>-1&&o.textContent.indexOf('行政')>-1)||
+       (svc.indexOf('交屋')>-1&&o.textContent.indexOf('行政')>-1)||
+       (svc.indexOf('粉紅')>-1&&o.textContent.indexOf('行政')>-1)||
+       (svc.indexOf('銀行')>-1&&o.textContent.indexOf('金融')>-1)||
+       (svc.indexOf('證券')>-1&&o.textContent.indexOf('金融')>-1)||
+       (svc.indexOf('考察')>-1&&o.textContent.indexOf('考察')>-1)||
+       (svc.indexOf('接送')>-1&&o.textContent.indexOf('包車')>-1)||
+       (svc.indexOf('包車')>-1&&o.textContent.indexOf('包車')>-1)||
+       (svc.indexOf('客製')>-1&&o.textContent.indexOf('其他')>-1)
+    ){o.click();}
+  });
+}
+</script>
+</body>
+</html>
